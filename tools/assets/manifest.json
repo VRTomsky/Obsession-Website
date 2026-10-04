@@ -1063,9 +1063,9 @@
   {
    "id": "trailer",
    "sources": [
-    "https://www.imdb.com/video/vi2176961305/",
-    "https://www.imdb.com/video/vi3770862361/",
-    "https://www.youtube.com/watch?v=gMC8kkwbIQQ"
+    "https://imdb-video.media-imdb.com/mc/vi2176961305/vi2176961305_1080p.mp4?Expires=1791214896&Signature=hr6Y7UKbi2YRseGGCfh6JX27R~kX1C9VfvAO~gACTFBhNxLsVO62x9UDGEKIi90sDwNDnc9OAr5NKprlk3Qzq3qMRmdfFvgaxwFJQTLKnWuqePDnJkPJrsJlbfny0gVfwde~vg3em2dPQPFANJMS4-Sr1Z6rZSj0wjIXlXG4BDPqXwzMXi8fP2mRiWHBEYKkz-pxK02gdlqD2lGVt5aPOXesTM0qGiMxEUkzuE3ZkfkeML-49DDIZJPT-LAwMbd5s~wVRg9yxr9~L5F9~1Xu~QImnARfmD2iy3HeQ9dq3wzvcEOWFRAREa3bBF2PgXTVEqwpjTJvq92jHjZy5V3fXA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+    "https://imdb-video.media-imdb.com/mc/vi2176961305/vi2176961305_720p.mp4?Expires=1791214896&Signature=p71P5ZM8Yavm8tbK4VFUAJXq4SWQChtw2Sm2KQItrF4g40pe4dn98sV3hm5E4hIIrXbbQfkXh0NTqc02PehTkcR2ZFxxDNG1WO8BOeNb5r6qM-35hEx7D~sXY0MT5UAyELKL5sODlgHA7GP6Oy-d6gJzFVypkRpWzzhvatxxzXoZTTScVISCLQ~rhi05DiPhmB3hJsPDsSjw8U8AtS6ZQl1FXJb9OO9mc7hlJCIEYKVhTLjPl87D3fPURiuodekVznxWD8en8Z2I3YNLa2hBP40iX2c9jRHIimTbQGNzHmCoIu39J4AG2OyzLIQzcZ7XKedMfwv224~O0yygWK8hnw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+    "https://www.imdb.com/video/vi2176961305/"
    ],
    "sheet": true,
    "clips": []
@@ -1073,9 +1073,9 @@
   {
    "id": "freaky-nikki",
    "sources": [
-    "https://www.imdb.com/video/vi688900889/",
-    "https://www.imdb.com/video/vi2719533849/",
-    "https://www.youtube.com/watch?v=HaZsOipO-xE"
+    "https://imdb-video.media-imdb.com/mc/vi688900889/vi688900889_1080p.mp4?Expires=1791214921&Signature=IRVi~0bQxWa8iy8O3GOGrEB46b3prQfhygcksqtfmW7QyuQmqJUGeCQ0LascOHGph7cM2SybTx20neaB7d35iwGSAxWutpPCTstaXOJ1rbNplvIyX9YpV66PU5vdkeJ47SfB~eSzI38vuHIhgzqno5A5y~T57--HafHmBkX4Ep-hvrRt67YP-r05B1nrz99BHZlqXYXVQyKErYEERbeHwspape27esktbxtStlSmgGkdLHZSfBrRd9bK92xrDDF86qCX5DsPa6VK4aWj96P1K0tqKq9Vlepaz5ti1tzCsreh5IyFhXc4i-PoT0fV5uk8LLXyhN~L3KRtjfGWlnFMVA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+    "https://imdb-video.media-imdb.com/mc/vi688900889/vi688900889_720p.mp4?Expires=1791214921&Signature=enrDIBYR0gfZij-mZ5UHSqKdu9gA1TdEUl0SIyUk0l3WKGjv9xvFQDsLGagcJ30lz6GReEA5~AKtmhn97tlkPGVyy57HUx4Yx3nt8qxZw7bora9c0DtQ5hPK3IZ8tythdMGG6prjRofIiAfB50g2prTG4gIMMJdLXC2AMzfxriXTD09BDrrdxeKKiX~VIAVUb3nSULIa~rQtj5oFuP9s4W3cYjJasXqbxN0DiQMbN8OfwOyWQ63xs9Ub53cbkgFMQ0HTI5iuJ7Z7cBQNkXTf1HQ~75mAF0l0~ysOZtnlTjM0lg-cxiqjoOwzDAI6dBQqrfMYz3q3-lz3Dpsj8gC3yg__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+    "https://www.imdb.com/video/vi688900889/"
    ],
    "sheet": true,
    "clips": []
@@ -1083,8 +1083,9 @@
   {
    "id": "nice-date",
    "sources": [
-    "https://www.imdb.com/video/vi118475545/",
-    "https://www.imdb.com/video/vi3189230361/"
+    "https://imdb-video.media-imdb.com/mc/vi118475545/vi118475545_1080p.mp4?Expires=1791214919&Signature=fQ42CLhw2F8SuumdT41lxSDN4B8gvewz7qcAhxYj6OsHUNsAFDrc4Sqouo6vyaBvXLkPa6HbRb1zcL8iIO6gJ6elRUXwDxIGmSg4cNXryxzP2F8axfpqxGdnjUmeIbcRnrAUu~w7G9I~8sxz1R6i9sj2Z471ErMh4RSjC3wExf7dMhJhp~kdJcrtmzB1F~S9RN5bEcWQO8uTRY~-QhbM3amNn9n2FERsvGmEiaJIbirEKVZzdR~G0u~3YoVsduKxAzJI8AcsCBp27Med4ylP0idzvGF7VTTSSFTTgAKGnpDM3Y7t8Y97EB4RCWaDrE0rm5s8dYx3csLy5eneHSpBIQ__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+    "https://imdb-video.media-imdb.com/mc/vi118475545/vi118475545_720p.mp4?Expires=1791214919&Signature=rl7P4HBh4l3LmWrZfwYmIrTEI0eDgVSWz-BId4djJ4ndFn5umlDDU3lkZ4uvQzz5z-cukTIXtFw2puC8TYWQ06UP2iQZMADEtL3t~U-0Q30Stfj2m8x6CPTbRy2SQ57h~ROii1mEEYw8dmBUHf54Uoefg4wMjlioSQV5Q09jsQ2gOt1cysInGzdXViRuUYzdjEEp7kl9EnnP5~DMhnFRmvN6eNR95U9ojGuqsUfByPbWQW4Z6DhVxke0VG1aELZbFFfgKHxklhLMpf-tuqzLMt6nkgRZ~XZfgpiKGKxOfs8DWalxEteMGjryFtWRVw8a2Y5jUJTPfk1-0Uea4OEWHA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+    "https://www.imdb.com/video/vi118475545/"
    ],
    "sheet": true,
    "clips": []
@@ -1092,8 +1093,9 @@
   {
    "id": "teaser",
    "sources": [
-    "https://www.imdb.com/video/vi3051539225/",
-    "https://www.imdb.com/video/vi464898841/"
+    "https://imdb-video.media-imdb.com/mc/vi3051539225/vi3051539225_1080p.mp4?Expires=1791214918&Signature=CvjMf4wUOPgre9dy4UhXuoxmiQyTp6-NrPM0Q1G5pCU29Chl9R4ysN4Ky1XbCDkIXselB6Wdj2z6C28mGzwNUgQAetUIz1FFQCmmkVy5RYClgm7WYSG1xaE7uQ5FNKNSAb0aYtDMajLBVYkVecqedomdxczLM1A89lQ8EiIitajw9oLBK5YBq-gmU4oLLlk65bUE~Os-QCUi2x66P0r8of~T~UJhA5394LQkHXXUXaTsKYlnuXSE7qQw4ZeXHKU7ynUTDU3stNLU5jFSSQ6eNqaRqotdzPN20UxpTA63o44ioScOceyeHN8PQbELLJv-Wf0aX2z2KSVGsN5WINHgEw__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+    "https://imdb-video.media-imdb.com/mc/vi3051539225/vi3051539225_720p.mp4?Expires=1791214918&Signature=SUBleTaN~6ykUGsSxrm2oIZvan9AZFDrmpeXqfpS8Jx~tX01OPDw4qhlyldLh9-j96LcpmMptjW0qt02T4sTfQRBotjXfJTjNHoubDcPgdy4GJ1H8XSGn8onbBMoaDWTA7-BtGz84WkLxsjY7hdR38nzFGQbdLsX9TphtiFoC~l8zCGmGDQI5gQvLnVI9hKFDiYQ5iCuKt8J4r4uu9eWlvkjBf-b0nO5euSWNQAjrvZT-BtEmUKuPfbv4~Kb1wdzbJjEOCt1mlKsV7lTTH8u7Qcwcl5V9~Sd33akmLbvRr-jd6h253ARmcyqTLceA-Llrt9cbo6LFYXJpoUB9po2TA__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA",
+    "https://www.imdb.com/video/vi3051539225/"
    ],
    "sheet": true,
    "clips": []

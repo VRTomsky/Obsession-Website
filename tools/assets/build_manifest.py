@@ -119,13 +119,20 @@ for vid in youtube:
                    "quality": 80})
 
 IMDB = "https://www.imdb.com/video/"
+# Signierte MP4-Links von IMDb (laufen nach ~24 h ab) – per Firecrawl aus der Videoseite gelesen.
+_direct = json.loads((Path(__file__).with_name("imdb_urls.json")).read_text()) if Path(__file__).with_name("imdb_urls.json").exists() else {}
+
+
+def direct(vid):
+    q = _direct.get(vid, {})
+    return [q[k] for k in ("1080p", "720p") if k in q]
+
+
 videos = [
-    {"id": "trailer", "sources": [IMDB + "vi2176961305/", IMDB + "vi3770862361/",
-                                  "https://www.youtube.com/watch?v=gMC8kkwbIQQ"], "sheet": True, "clips": []},
-    {"id": "freaky-nikki", "sources": [IMDB + "vi688900889/", IMDB + "vi2719533849/",
-                                       "https://www.youtube.com/watch?v=HaZsOipO-xE"], "sheet": True, "clips": []},
-    {"id": "nice-date", "sources": [IMDB + "vi118475545/", IMDB + "vi3189230361/"], "sheet": True, "clips": []},
-    {"id": "teaser", "sources": [IMDB + "vi3051539225/", IMDB + "vi464898841/"], "sheet": True, "clips": []},
+    {"id": "trailer", "sources": direct("vi2176961305") + [IMDB + "vi2176961305/"], "sheet": True, "clips": []},
+    {"id": "freaky-nikki", "sources": direct("vi688900889") + [IMDB + "vi688900889/"], "sheet": True, "clips": []},
+    {"id": "nice-date", "sources": direct("vi118475545") + [IMDB + "vi118475545/"], "sheet": True, "clips": []},
+    {"id": "teaser", "sources": direct("vi3051539225") + [IMDB + "vi3051539225/"], "sheet": True, "clips": []},
 ]
 
 out = Path(__file__).with_name("manifest.json")

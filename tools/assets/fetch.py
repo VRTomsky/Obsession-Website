@@ -83,6 +83,17 @@ def download_video(vid):
     clients = ["default", "tv_simply", "tv", "web_safari", "mweb", "android_vr", "ios"]
     errors = []
     for source in vid["sources"]:
+        if ".mp4" in source.split("?")[0]:
+            try:
+                with requests.get(source, stream=True, timeout=120, headers={"User-Agent": UA}) as r:
+                    r.raise_for_status()
+                    with open(target, "wb") as fh:
+                        for chunk in r.iter_content(1 << 20):
+                            fh.write(chunk)
+                return target, source.split("?")[0]
+            except Exception as exc:  # noqa: BLE001
+                errors.append(f"{source.split('?')[0]}: {exc}")
+                continue
         attempts = clients if "youtu" in source else ["default"]
         for client in attempts:
             cmd = [
