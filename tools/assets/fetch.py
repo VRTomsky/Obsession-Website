@@ -144,6 +144,8 @@ def make_clip(video, clip):
     out.parent.mkdir(parents=True, exist_ok=True)
     width = clip.get("width", 1920)
     vf = f"scale={width}:-2:flags=lanczos,fps=30"
+    if clip.get("crop"):
+        vf = f"crop={clip['crop']}," + vf
     base = ["ffmpeg", "-y", "-loglevel", "error", "-ss", str(clip["start"]), "-t", str(clip["duration"]), "-i", str(video), "-an"]
     results = {}
     mp4 = out.with_suffix(".mp4")
@@ -156,7 +158,7 @@ def make_clip(video, clip):
     results["webm"] = r2.returncode == 0
     poster = out.with_suffix(".jpg")
     r3 = run(["ffmpeg", "-y", "-loglevel", "error", "-ss", str(clip["start"]), "-i", str(video), "-frames:v", "1",
-              "-vf", f"scale={width}:-2", "-q:v", "3", str(poster)])
+              "-vf", (f"crop={clip['crop']}," if clip.get("crop") else "") + f"scale={width}:-2", "-q:v", "3", str(poster)])
     results["poster"] = r3.returncode == 0
     for f in (mp4, webm, poster):
         if f.exists():

@@ -1,0 +1,317 @@
+// Die Figuren des Films. Fakten aus dem Film + klar markierte Interpretation.
+import { M } from './media.js';
+
+export const characters = [
+  {
+    slug: 'bear',
+    name: 'Bear',
+    full: 'Baron „Bear" Bailey',
+    actor: 'michael-johnston',
+    hero: M.still.wish,
+    images: [M.still.wish, M.still.store, M.still.storeCouple, M.still.bedShock, M.still.phone, M.still.finale],
+    tagline: { de: 'Der nette Typ, der sich Liebe wünscht – statt sie zu riskieren.', en: 'The nice guy who wishes for love – instead of risking it.' },
+    traits: [{ de: 'schüchtern', en: 'shy' }, { de: 'romantisch', en: 'romantic' }, { de: 'feige', en: 'cowardly' }, { de: 'besitzergreifend', en: 'possessive' }],
+    stats: { obsession: 70, honesty: 20, courage: 10, survival: 0 },
+    about: {
+      de: 'Bear arbeitet im Musikladen von Carter Harper und ist seit Jahren heimlich in seine Kollegin und beste Freundin Nikki verliebt. Er ist freundlich, unsicher und kann einfach nicht aussprechen, was er fühlt. Nach dem Tod seiner Katze Sandy kauft er im Kristallladen einen One Wish Willow – und benutzt ihn, als Nikki ihm im Auto direkt die Frage stellt, auf die er seit Jahren eine Antwort hat.',
+      en: 'Bear works at Carter Harper\'s music store and has been secretly in love with his coworker and best friend Nikki for years. He is kind, insecure and simply can\'t say what he feels. After his cat Sandy dies, he buys a One Wish Willow at the crystal shop – and uses it when Nikki asks him, point-blank in the car, the question he has been answering in his head for years.',
+    },
+    connection: {
+      de: 'Bear, Nikki, Ian und Sarah arbeiten zusammen im Musikladen – Sarah ist die Tochter des Chefs. Bear und Nikki kennen sich am längsten.',
+      en: 'Bear, Nikki, Ian and Sarah all work at the music store – Sarah is the boss\'s daughter. Bear and Nikki go back the longest.',
+    },
+    why: {
+      de: 'Bear wünscht sich Nikki nicht aus Bosheit, sondern aus Angst vor Ablehnung. Der Wunsch ist die Abkürzung, die ihm das Risiko eines ehrlichen „Ich liebe dich" erspart. Als klar wird, dass Nikki leidet, macht er ihn trotzdem nicht sofort rückgängig: Er will, dass „es funktioniert". Genau diese Weigerung – nicht der Wunsch selbst – macht ihn schuldig. Barker lehnte 2 Millionen Dollar ab, um Bear nicht zum Helden umschreiben zu müssen.',
+      en: 'Bear doesn\'t wish for Nikki out of malice but out of fear of rejection. The wish is the shortcut that spares him the risk of an honest "I love you". When it becomes clear Nikki is suffering, he still doesn\'t undo it right away: he wants it to "work". That refusal – not the wish itself – is what makes him guilty. Barker turned down $2 million rather than rewrite Bear as a hero.',
+    },
+    moments: [
+      { de: 'Zerbricht den Willow im Auto – allein, wütend auf sich selbst.', en: 'Snaps the Willow in his car – alone, furious with himself.' },
+      { de: 'Weigert sich, Nikki zu töten, als die echte Nikki ihn darum anfleht – und ist gekränkt.', en: 'Refuses to kill Nikki when the real Nikki begs him to – and feels offended.' },
+      { de: 'Schluckt die Pillen und versucht sofort, sie wieder zu erbrechen.', en: 'Swallows the pills and immediately tries to throw them up.' },
+    ],
+    fate: { de: 'Stirbt an einer Überdosis – im Kuss mit Nikki, nachdem sie den letzten Willow zerbrochen hat.', en: 'Dies of an overdose – kissing Nikki, after she breaks the last Willow.' },
+    interpretation: {
+      de: 'Bear ist die Horror-Version des „Nice Guy": Er hält sich für den Guten, weil er nie laut wird. Aber er behandelt Nikkis Gefühle wie etwas, das ihm zusteht. Dass sein letzter Kuss selbst durch einen Wunsch erzwungen wird, ist die bitterste Pointe des Films – am Ende bekommt Bear exakt das, was er Nikki angetan hat.',
+      en: 'Bear is the horror version of the "nice guy": he thinks he\'s one of the good ones because he never raises his voice. But he treats Nikki\'s feelings as something he\'s owed. That his last kiss is itself forced by a wish is the film\'s bitterest punchline – in the end, Bear gets exactly what he did to Nikki.',
+    },
+  },
+  {
+    slug: 'nikki',
+    name: 'Nikki',
+    full: 'Nikki Freeman',
+    actor: 'inde-navarrette',
+    hero: M.still.nikkiSmile,
+    images: [M.still.nikkiSmile, M.still.nikkiNight, M.still.date, M.still.storePhone, M.still.happy, M.still.hallway],
+    tagline: { de: 'Die Frau, die vor dem Wunsch existierte.', en: 'The woman who existed before the wish.' },
+    traits: [{ de: 'frech', en: 'sassy' }, { de: 'kumpelhaft', en: 'bro-y' }, { de: 'eigenständig', en: 'independent' }, { de: 'gefangen', en: 'trapped' }],
+    stats: { obsession: 0, honesty: 60, courage: 85, survival: 100 },
+    about: {
+      de: 'Bevor Bear den Willow zerbricht, ist Nikki einfach Nikki: lässig, schlagfertig, ein bisschen chaotisch – die Kollegin, mit der man nach Feierabend abhängt. Barker beschrieb ihre Energie als „bro-y kind of sassy". Für Bear empfindet sie Freundschaft, nicht mehr. Zu Sarah sagt sie kurz vor dem Wunsch, Bear sei für sie wie ein „kleiner Bruder".',
+      en: 'Before Bear snaps the Willow, Nikki is just Nikki: laid-back, quick-witted, a little chaotic – the coworker you hang out with after your shift. Barker described her energy as "bro-y kind of sassy". She feels friendship for Bear, nothing more. Shortly before the wish, she tells Sarah that Bear is like a "little brother" to her.',
+    },
+    connection: {
+      de: 'Arbeitet mit Bear, Ian und Sarah im Musikladen. Mit Ian hatte sie – heimlich – zwei Jahre lang eine Affäre.',
+      en: 'Works with Bear, Ian and Sarah at the music store. She and Ian had a secret two-year affair.',
+    },
+    why: {
+      de: 'Die echte Nikki handelt im Film fast nie selbst – genau das ist der Horror. Sie lügt über ihren krebskranken Vater, weil der Wunsch sie in Bears Nähe treibt. In der einen Nacht, in der ihr obsessiver Teil „schläft", sagt sie, was sie wirklich will: dass Bear sie tötet, damit es aufhört. Ihre Affäre mit Ian erklärt, warum Sarah glaubt, Nikki benutze Bear nur – doch Sarah liegt falsch. Nikki hat keine Wahl mehr.',
+      en: 'The real Nikki almost never acts on her own in the film – that\'s the horror. She lies about her father\'s cancer because the wish drives her toward Bear. In the one night her obsessive side is "asleep", she says what she really wants: for Bear to kill her so it stops. Her affair with Ian explains why Sarah believes Nikki is just using Bear – but Sarah is wrong. Nikki no longer has a choice.',
+    },
+    moments: [
+      { de: 'Fragt Bear im Auto direkt, ob er sie mag.', en: 'Asks Bear point-blank in the car whether he likes her.' },
+      { de: 'Schreit beim ersten Kuss – der erste Riss im Wunsch.', en: 'Screams at the first kiss – the first crack in the wish.' },
+      { de: 'Fleht Bear in der Nacht an, sie zu töten.', en: 'Begs Bear at night to kill her.' },
+    ],
+    fate: { de: 'Überlebt. Mit Bears Tod endet der Wunsch – und Nikki steht frei und schreiend inmitten dessen, was ihr Körper getan hat.', en: 'Survives. With Bear\'s death the wish ends – and Nikki stands free and screaming amid what her body has done.' },
+    interpretation: {
+      de: 'Barker schrieb Nikki bewusst als Bedrohung und Opfer zugleich. Das Ende, in dem sie überlebt, ist grausamer als das ursprünglich gedrehte Romeo-und-Julia-Ende: Die echte Nikki wacht in einem Albtraum auf, den sie nicht gewählt hat – mit Blut an den Händen, das nicht „ihr" Blut ist. Kritiker bemängelten, dass wir zu wenig aus Nikkis Perspektive sehen. Man kann das aber auch als Absicht lesen: Ihre Stimme wurde ihr genommen.',
+      en: 'Barker deliberately wrote Nikki as both threat and victim. The ending in which she survives is crueler than the Romeo-and-Juliet ending he originally shot: the real Nikki wakes up in a nightmare she never chose – with blood on her hands that isn\'t "hers". Some critics argued we see too little from Nikki\'s perspective. But that can also be read as the point: her voice was taken from her.',
+    },
+  },
+  {
+    slug: 'freaky-nikki',
+    name: 'Freaky Nikki',
+    full: { de: 'Nikki unter dem Wunsch', en: 'Nikki under the wish' },
+    actor: 'inde-navarrette',
+    hero: M.still.watching,
+    video: M.video.nikki,
+    images: [M.still.watching, M.still.bloodGrin, M.still.scream, M.still.flowers, M.still.bloodShock, M.still.finaleNikki, M.still.redDoorScratch],
+    tagline: { de: 'Sie liebt dich mehr als irgendjemanden auf der Welt. Genau so, wie du es dir gewünscht hast.', en: 'She loves you more than anyone in the world. Exactly as you wished.' },
+    traits: [{ de: 'unersättlich', en: 'insatiable' }, { de: 'eifersüchtig', en: 'jealous' }, { de: 'schlaflos', en: 'sleepless' }, { de: 'gnadenlos', en: 'merciless' }],
+    stats: { obsession: 100, honesty: 5, courage: 100, survival: 100 },
+    about: {
+      de: '„Freaky Nikki" ist der Wunsch in Menschengestalt. Sie steht stundenlang regungslos an derselben Stelle, beobachtet Bear beim Schlafen, klebt die Tür zu, schneidet ihm die Haare, baut Altäre und tötet jeden, der zwischen sie und ihn kommt. Sie lächelt dabei. Ihr „Uncanny Valley"-Look – größere Pupillen, ein zu breites Lächeln – entstand komplett praktisch, inspiriert von einem TikTok-Make-up-Trend.',
+      en: '"Freaky Nikki" is the wish in human form. She stands motionless in the same spot for hours, watches Bear sleep, tapes the door shut, cuts his hair, builds shrines and kills anyone who comes between them. She smiles while doing it. Her "uncanny valley" look – larger pupils, a smile that\'s too wide – was achieved entirely practically, inspired by a TikTok makeup trend.',
+    },
+    connection: {
+      de: 'Existiert nur, weil Bear sie sich gewünscht hat. Für sie gibt es nur einen Menschen: Bear.',
+      en: 'Exists only because Bear wished for her. For her there is only one person: Bear.',
+    },
+    why: {
+      de: 'Freaky Nikki folgt dem Wortlaut des Wunsches: Sie liebt Bear mehr als irgendjemanden auf der Welt. Nicht „gesund", nicht „glücklich" – nur mehr. Jede Bedrohung dieser Liebe wird entfernt: Sarah, weil sie Bear mag; Ian, weil er den Wunsch rückgängig machen könnte. Ihre Gewalt gegen sich selbst (die Flasche auf der Party) zeigt, dass die echte Nikki darunter weiter kämpft.',
+      en: 'Freaky Nikki follows the wish to the letter: she loves Bear more than anyone in the world. Not "healthily", not "happily" – just more. Every threat to that love is removed: Sarah, because she likes Bear; Ian, because he could undo the wish. Her violence against herself (the bottle at the party) shows the real Nikki is still fighting underneath.',
+    },
+    moments: [
+      { de: 'Das Sandwich mit Sandy.', en: 'The sandwich with Sandy in it.' },
+      { de: 'Die „Hänsel und Gretel"-Lesung beim Jenga.', en: 'The "Hansel and Gretel" reading during Jenga.' },
+      { de: 'Das Restaurant: „No, no, no, don\'t do that – I thought we were having a nice date."', en: 'The restaurant: "No, no, no, don\'t do that – I thought we were having a nice date."' },
+      { de: 'Wartet in Sarahs Kleidung mit der Waffe.', en: 'Waits in Sarah\'s clothes with a gun.' },
+    ],
+    fate: { de: 'Verschwindet in dem Moment, in dem Bear stirbt.', en: 'Vanishes the moment Bear dies.' },
+    interpretation: {
+      de: 'Freaky Nikki ist ein Spiegel. Sie macht sichtbar, was Bears Wunsch eigentlich verlangt: einen Menschen ohne eigenen Willen, der nur für ihn existiert. Das Erschreckende ist nicht, dass sie „verrückt" ist – sondern dass sie genau das tut, was Bear bestellt hat. 2026 wurde sie zur Horror-Ikone: Halloween Horror Nights, TikTok-Dance, Memes.',
+      en: 'Freaky Nikki is a mirror. She makes visible what Bear\'s wish actually demands: a person without a will of her own, who exists only for him. The terrifying part isn\'t that she\'s "crazy" – it\'s that she does exactly what Bear ordered. In 2026 she became a horror icon: Halloween Horror Nights, a TikTok dance, memes.',
+    },
+  },
+  {
+    slug: 'ian',
+    name: 'Ian',
+    full: 'Ian',
+    actor: 'cooper-tomlinson',
+    hero: M.still.party,
+    images: [M.still.party, M.still.friends, M.still.polaroid],
+    tagline: { de: 'Der Zyniker, der als Erster misstrauisch wird.', en: 'The cynic who is the first to get suspicious.' },
+    traits: [{ de: 'sarkastisch', en: 'sarcastic' }, { de: 'misstrauisch', en: 'suspicious' }, { de: 'heimlich verliebt?', en: 'secretly in love?' }],
+    stats: { obsession: 30, honesty: 40, courage: 55, survival: 0 },
+    about: {
+      de: 'Ian ist der Kumpel im Musikladen, der alles kommentiert. Er bemerkt als Erster, dass mit Nikki etwas nicht stimmt, und erzählt Bear von der „kleiner Bruder"-Bemerkung und der Lüge über Nikkis Vater. Nikki will er nicht auf seiner Party haben.',
+      en: 'Ian is the music store buddy with a comment for everything. He is the first to notice something is wrong with Nikki, and tells Bear about the "little brother" remark and the lie about Nikki\'s father. He doesn\'t want Nikki at his party.',
+    },
+    connection: {
+      de: 'Kollege von Bear, Nikki und Sarah. Hatte zwei Jahre lang heimlich etwas mit Nikki.',
+      en: 'Coworker of Bear, Nikki and Sarah. Secretly hooked up with Nikki for two years.',
+    },
+    why: {
+      de: 'Ians Misstrauen hat einen Grund, den Bear nicht kennt: Er kennt Nikki besser, als er zugibt. Dass sie plötzlich mit Bear zusammen ist, kränkt ihn – vielleicht mehr, als er sich selbst eingesteht. Als Bear ihm von dem Wunsch erzählt, hält Ian das für einen Witz und wünscht sich spöttisch eine Milliarde Dollar. Der Geldregen beweist: Alles ist wahr.',
+      en: 'Ian\'s suspicion has a reason Bear doesn\'t know: he knows Nikki better than he admits. Her sudden relationship with Bear hurts him – maybe more than he admits to himself. When Bear tells him about the wish, Ian thinks it\'s a joke and mockingly wishes for a billion dollars. The rain of cash proves it: everything is real.',
+    },
+    moments: [
+      { de: 'Der Anruf, der Bears Traum zerstört.', en: 'The phone call that shatters Bear\'s dream.' },
+      { de: 'Die Party und das Jenga-Spiel.', en: 'The party and the Jenga game.' },
+      { de: 'Eine Milliarde Dollar regnen von der Decke.', en: 'A billion dollars rain from the ceiling.' },
+    ],
+    fate: { de: 'Wird von Nikki erschossen, als er Bear zu Hilfe kommt.', en: 'Shot by Nikki when he comes to help Bear.' },
+    interpretation: {
+      de: 'Ian ist der einzige Freund, der Bear am Ende tatsächlich hilft – und dafür stirbt. Seine Affäre mit Nikki macht die Freundesgruppe zu einem Netz aus Geheimnissen: Niemand in diesem Musikladen sagt dem anderen die Wahrheit. Der Wunsch reißt dieses Netz nur auf.',
+      en: 'Ian is the only friend who actually helps Bear in the end – and dies for it. His affair with Nikki turns the friend group into a web of secrets: nobody in that music store tells anyone the truth. The wish just tears that web open.',
+    },
+  },
+  {
+    slug: 'sarah',
+    name: 'Sarah',
+    full: 'Sarah Harper',
+    actor: 'megan-lawless',
+    hero: M.still.friends,
+    images: [M.still.friends, M.still.park, M.still.carHouse],
+    tagline: { de: 'Die Einzige, die Bear warnt.', en: 'The only one who warns Bear.' },
+    traits: [{ de: 'ehrlich', en: 'honest' }, { de: 'fürsorglich', en: 'caring' }, { de: 'mutig', en: 'brave' }],
+    stats: { obsession: 10, honesty: 95, courage: 75, survival: 0 },
+    about: {
+      de: 'Sarah ist die Tochter von Ladenbesitzer Carter Harper und arbeitet mit den anderen im Musikladen. Nikki hat ihr anvertraut, dass Bear für sie wie ein „kleiner Bruder" ist. Als die Situation eskaliert, schreibt Sarah Bear heimlich und trifft ihn im Park.',
+      en: 'Sarah is the daughter of store owner Carter Harper and works with the others at the music store. Nikki confided in her that Bear is like a "little brother" to her. As things escalate, Sarah secretly texts Bear and meets him in the park.',
+    },
+    connection: {
+      de: 'Tochter des Chefs, Kollegin und Vertraute von Nikki.',
+      en: 'The boss\'s daughter, coworker and Nikki\'s confidante.',
+    },
+    why: {
+      de: 'Sarah will Bear schützen. Sie erzählt ihm von Ian und Nikki, weil sie glaubt, Nikki benutze ihn als Racheplan gegen Ian. Dass sie dabei auch andeutet, selbst Gefühle für Bear zu haben, macht sie in den Augen von Freaky Nikki zur Rivalin – und das ist ihr Todesurteil.',
+      en: 'Sarah wants to protect Bear. She tells him about Ian and Nikki because she believes Nikki is using him as revenge against Ian. That she also hints at having feelings for Bear herself makes her a rival in Freaky Nikki\'s eyes – and that\'s her death sentence.',
+    },
+    moments: [
+      { de: 'Die Jenga-Karte: Bear soll die Person links von ihm küssen – Sarah.', en: 'The Jenga block: Bear must kiss the person to his left – Sarah.' },
+      { de: 'Das Geständnis im Auto im Park.', en: 'The confession in the car at the park.' },
+    ],
+    fate: { de: 'Wird im Park von Nikki getötet. Ihre Leiche taucht später in Bears Haus wieder auf.', en: 'Killed by Nikki in the park. Her body later reappears in Bear\'s house.' },
+    interpretation: {
+      de: 'Sarah ist das, was Bear hätte haben können, wenn er ehrlich gewesen wäre: jemanden, der ihn freiwillig mag. Ihr Tod ist die direkte Folge davon, dass Bear sich für den Zwang statt für die Wahrheit entschieden hat. Die brutalste Szene des Films musste für das R-Rating gekürzt werden.',
+      en: 'Sarah is what Bear could have had if he had been honest: someone who likes him freely. Her death is the direct consequence of Bear choosing coercion over the truth. The film\'s most brutal scene had to be trimmed for the R rating.',
+    },
+  },
+  {
+    slug: 'carter',
+    name: 'Carter',
+    full: 'Carter Harper',
+    actor: 'andy-richter',
+    hero: M.still.store,
+    images: [M.still.store, M.still.storeCouple],
+    tagline: { de: 'Der Chef, der nichts ahnt.', en: 'The boss who suspects nothing.' },
+    traits: [{ de: 'gutmütig', en: 'good-natured' }, { de: 'ahnungslos', en: 'oblivious' }],
+    stats: { obsession: 5, honesty: 80, courage: 40, survival: 100 },
+    about: {
+      de: 'Carter Harper besitzt den Musikladen, in dem Bear, Nikki, Ian und seine Tochter Sarah arbeiten. Er ist der freundliche, etwas verpeilte Erwachsene in einer Welt aus Zwanzigjährigen – und bringt mit Andy Richters Timing Leichtigkeit in einen immer dunkleren Film.',
+      en: 'Carter Harper owns the music store where Bear, Nikki, Ian and his daughter Sarah work. He is the friendly, slightly scatterbrained adult in a world of twentysomethings – and with Andy Richter\'s timing he brings lightness to an ever darker film.',
+    },
+    connection: {
+      de: 'Chef der Clique und Vater von Sarah.',
+      en: 'Boss of the group and Sarah\'s father.',
+    },
+    why: {
+      de: 'Carter muss nichts „tun", um tragisch zu sein. Er ist das Bild der normalen Welt, die vom Wunsch nichts ahnt – und die am Ende trotzdem ein Kind verliert.',
+      en: 'Carter doesn\'t need to "do" anything to be tragic. He represents the normal world that knows nothing about the wish – and still loses a child in the end.',
+    },
+    moments: [{ de: 'Der Alltag im Laden – die letzte Normalität des Films.', en: 'Everyday life at the store – the film\'s last normality.' }],
+    fate: { de: 'Überlebt – und verliert seine Tochter.', en: 'Survives – and loses his daughter.' },
+    interpretation: {
+      de: 'Barker besetzte bewusst ein vertrautes, sympathisches Gesicht. Je normaler Carter wirkt, desto härter trifft der Gedanke an das, was ihn nach dem Abspann erwartet.',
+      en: 'Barker deliberately cast a familiar, likable face. The more normal Carter seems, the harder it hits to imagine what awaits him after the credits.',
+    },
+  },
+  {
+    slug: 'crystal-shop',
+    name: 'Viola & Harry',
+    full: { de: 'Die Angestellten im Kristallladen', en: 'The crystal shop employees' },
+    actor: 'haley-fitzgerald',
+    actor2: 'darin-toonder',
+    hero: M.still.shop,
+    images: [M.still.shop, M.still.willow, M.commons.willowReplica],
+    tagline: { de: 'Sie verkaufen das Unheil – für ein paar Dollar.', en: 'They sell the curse – for a few dollars.' },
+    traits: [{ de: 'freundlich', en: 'friendly' }, { de: 'unwissend?', en: 'unaware?' }],
+    stats: { obsession: 0, honesty: 50, courage: 30, survival: 100 },
+    about: {
+      de: 'Im Kristallladen (gedreht im Green Man Store) will Bear eigentlich nur einen Ersatz-Anhänger für Nikki kaufen. Viola (Haley Fitzgerald) und Harry (Darin Toonder) arbeiten dort. Neben Edelsteinen und Räucherstäbchen steht ein Display mit One Wish Willows. Später kauft Bear dort alle übrigen Willows.',
+      en: 'At the crystal shop (shot at the Green Man Store) Bear only wants to buy Nikki a replacement necklace. Viola (Haley Fitzgerald) and Harry (Darin Toonder) work there. Next to gemstones and incense sits a display of One Wish Willows. Later, Bear buys every remaining Willow there.',
+    },
+    connection: {
+      de: 'Kennen die Clique nicht – sie sind nur die Verkäufer.',
+      en: 'Don\'t know the group – they are just the sellers.',
+    },
+    why: {
+      de: 'Wissen sie, was sie verkaufen? Der Film beantwortet das bewusst nicht. Barker entschied sich (inspiriert von Aaron Sorkins Drehbuch-Masterclass) dagegen, die Mythologie des Willows auszuerzählen.',
+      en: 'Do they know what they\'re selling? The film deliberately doesn\'t say. Barker (inspired by Aaron Sorkin\'s screenwriting MasterClass) chose not to explain the Willow\'s mythology.',
+    },
+    moments: [{ de: 'Der Kauf des ersten Willows.', en: 'The purchase of the first Willow.' }, { de: 'Bear kauft den kompletten Restbestand.', en: 'Bear buys the entire remaining stock.' }],
+    fate: { de: 'Unbekannt.', en: 'Unknown.' },
+    interpretation: {
+      de: 'Der banalste Ort des Films ist der gefährlichste: Das Böse liegt zwischen Kitsch und Heilsteinen im Regal, verpackt wie eine Süßigkeit. Genau das macht den Willow so unheimlich.',
+      en: 'The film\'s most banal location is its most dangerous: evil sits on a shelf between kitsch and healing stones, packaged like candy. That\'s exactly what makes the Willow so creepy.',
+    },
+  },
+  {
+    slug: 'customer-service',
+    name: { de: 'Der Kundenservice', en: 'Customer Service' },
+    full: { de: 'Die Stimme der One-Wish-Willow-Hotline', en: 'The voice of the One Wish Willow hotline' },
+    actor: 'curry-barker',
+    hero: M.still.phone,
+    images: [M.still.phone, M.still.willowHold],
+    tagline: { de: '„Der Wunsch läuft ab, wenn Sie sterben." Einen schönen Tag noch.', en: '"The wish expires when you die." Have a nice day.' },
+    traits: [{ de: 'höflich', en: 'polite' }, { de: 'allwissend', en: 'all-knowing' }, { de: 'unheimlich', en: 'uncanny' }],
+    stats: { obsession: 0, honesty: 100, courage: 0, survival: 100 },
+    about: {
+      de: 'Als Bear verzweifelt die Hotline auf der Willow-Verpackung anruft, meldet sich eine freundliche Stimme: der Kundenservice. Gesprochen von Curry Barker selbst – aufgenommen mit dem Handy in seinem Schlafzimmer, während er den Film schnitt.',
+      en: 'When Bear desperately calls the hotline on the Willow packaging, a friendly voice answers: customer service. Voiced by Curry Barker himself – recorded on his phone in his bedroom while he edited the film.',
+    },
+    connection: {
+      de: 'Steht über allen. Weiß alles. Stellt sogar Nikki durch.',
+      en: 'Stands above everyone. Knows everything. Even puts Nikki on the line.',
+    },
+    why: {
+      de: 'Der Kundenservice erklärt die einzige Regel, die zählt: Der Wunsch endet erst mit Bears Tod. Dann stellt er Nikki in die Leitung – schreiend. Woher weiß eine Hotline, wo Nikki ist? Wer steckt dahinter? Der Film bleibt bewusst stumm.',
+      en: 'Customer service explains the only rule that matters: the wish only ends with Bear\'s death. Then it puts Nikki on the line – screaming. How does a hotline know where Nikki is? Who is behind it? The film stays deliberately silent.',
+    },
+    moments: [{ de: 'Der Anruf – der vielleicht unheimlichste Moment des Films ohne ein einziges Monster.', en: 'The call – perhaps the creepiest moment of the film without a single monster.' }],
+    fate: { de: 'Immer erreichbar.', en: 'Always available.' },
+    interpretation: {
+      de: 'Ein Teufel mit Warteschleifenmusik. Barker übersetzt die Affenpfote in die Sprache des modernen Kapitalismus: Der Fluch hat AGB, und die Hotline ist freundlich, aber hilft nicht. Barker plant laut eigener Aussage eventuell eine Anthologie-Serie – der Kundenservice wäre der perfekte rote Faden.',
+      en: 'A devil with hold music. Barker translates the monkey\'s paw into the language of modern capitalism: the curse has terms and conditions, and the hotline is friendly but useless. Barker has floated an anthology series – customer service would be the perfect connecting thread.',
+    },
+  },
+  {
+    slug: 'sandy',
+    name: 'Sandy',
+    full: { de: 'Bears Katze', en: 'Bear\'s cat' },
+    actor: null,
+    hero: M.still.note,
+    images: [M.still.note, M.still.candles],
+    tagline: { de: 'Das erste Opfer. Noch vor dem Wunsch.', en: 'The first victim. Even before the wish.' },
+    traits: [{ de: 'Katze', en: 'cat' }, { de: '✝', en: '✝' }],
+    stats: { obsession: 0, honesty: 100, courage: 50, survival: 0 },
+    about: {
+      de: 'Sandy stirbt gleich zu Beginn, weil sie Oxycodon gefressen hat – dieselben Pillen, mit denen Bear am Ende stirbt. Ihr Tod führt Bear überhaupt erst in den Kristallladen. Nikki baut ihr später einen Altar … und verarbeitet ihre Überreste in einem Sandwich.',
+      en: 'Sandy dies right at the start after eating oxycodone – the same pills Bear dies from at the end. Her death is what leads Bear to the crystal shop in the first place. Nikki later builds her a shrine … and puts her remains in a sandwich.',
+    },
+    connection: { de: 'Bears Katze.', en: 'Bear\'s cat.' },
+    why: { de: 'Sandy ist der Auslöser der Kettenreaktion.', en: 'Sandy is the trigger of the chain reaction.' },
+    moments: [{ de: 'Der Altar mit Kerzen.', en: 'The candlelit shrine.' }, { de: 'Das Sandwich.', en: 'The sandwich.' }],
+    fate: { de: 'Tot – und trotzdem nicht in Frieden gelassen.', en: 'Dead – and still not left in peace.' },
+    interpretation: {
+      de: 'Die Pillen sind die Klammer des Films: Am Anfang töten sie Sandy, am Ende Bear. Wer genau hinsieht, merkt, dass Bear die Gefahr schon im ersten Akt kannte – und nichts geändert hat.',
+      en: 'The pills bookend the film: at the start they kill Sandy, at the end they kill Bear. Look closely and you realize Bear knew the danger from the first act – and changed nothing.',
+    },
+  },
+  {
+    slug: 'one-wish-willow',
+    name: 'One Wish Willow',
+    full: { de: 'Der Gegenstand', en: 'The object' },
+    actor: null,
+    hero: M.still.willow,
+    images: [M.still.willow, M.commons.willowReplica, M.still.shop, M.still.willowHold],
+    tagline: { de: '„Amaze your friends! You only get one wish."', en: '"Amaze your friends! You only get one wish."' },
+    traits: [{ de: 'billig', en: 'cheap' }, { de: 'verbindlich', en: 'binding' }, { de: 'endgültig', en: 'final' }],
+    stats: { obsession: 100, honesty: 0, courage: 0, survival: 100 },
+    about: {
+      de: 'Ein Stäbchen in rot-weißem Papier, verpackt wie eine Süßigkeit vom Jahrmarkt. Man zerbricht es, wünscht sich etwas – fertig. Curry Barker entwarf das Design zusammen mit seiner Mutter. Die Idee stammt aus der Simpsons-Folge „Treehouse of Horror II", in der Homer eine Affenpfote kauft. Inzwischen gibt es Fan-Repliken (siehe Foto).',
+      en: 'A little stick in red-and-white paper, packaged like carnival candy. You snap it, make a wish – done. Curry Barker designed it together with his mother. The idea comes from the Simpsons episode "Treehouse of Horror II", in which Homer buys a monkey\'s paw. Fan replicas now exist (see photo).',
+    },
+    connection: { de: 'Verbindet alle. Gehört niemandem.', en: 'Connects everyone. Belongs to no one.' },
+    why: {
+      de: 'Die Regeln, die der Film verrät: Ein Willow erfüllt genau einen Wunsch, wörtlich. Der Wunsch endet erst mit dem Tod des Wünschenden. Nicht jeder Willow lässt sich zerbrechen, wenn man ihn braucht. Und jeder kann wünschen – auch Ian, auch Nikki.',
+      en: 'The rules the film reveals: a Willow grants exactly one wish, literally. The wish only ends with the death of the person who made it. Not every Willow will break when you need it to. And anyone can wish – Ian too, Nikki too.',
+    },
+    moments: [{ de: 'Bear zerbricht den ersten Willow.', en: 'Bear snaps the first Willow.' }, { de: 'Ians Milliarde.', en: 'Ian\'s billion.' }, { de: 'Nikki zerbricht den letzten.', en: 'Nikki breaks the last one.' }],
+    fate: { de: 'Ausverkauft. Vorerst.', en: 'Sold out. For now.' },
+    interpretation: {
+      de: 'Barker gibt selbst zu, dass der Willow ein „Plot Hole" hat: Wenn er funktioniert, müsste die Welt voller Drachen und Milliardäre sein. Vielleicht funktionieren nur wenige. Vielleicht sucht sich der Willow seine Käufer aus. Mehr dazu unter „Theorien".',
+      en: 'Barker himself admits the Willow has a "plot hole": if it works, the world should be full of dragons and billionaires. Maybe only a few work. Maybe the Willow chooses its buyers. More under "Theories".',
+    },
+  },
+];
+
+export const charBySlug = Object.fromEntries(characters.map((c) => [c.slug, c]));
+
+export const statLabels = {
+  obsession: { de: 'Obsession', en: 'Obsession' },
+  honesty: { de: 'Ehrlichkeit', en: 'Honesty' },
+  courage: { de: 'Mut', en: 'Courage' },
+  survival: { de: 'Überlebt', en: 'Survives' },
+};

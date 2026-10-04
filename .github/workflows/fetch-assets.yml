@@ -7,8 +7,6 @@ on:
   push:
     paths:
       - "tools/assets/manifest.json"
-      - "tools/assets/fetch.py"
-      - ".github/workflows/fetch-assets.yml"
 
 permissions:
   contents: write
