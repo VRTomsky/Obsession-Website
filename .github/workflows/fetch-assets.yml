@@ -1,0 +1,63 @@
+name: Fetch media assets
+
+# Lädt Bilder (TMDB, Wikimedia Commons, YouTube-Thumbnails) und Trailer-Ausschnitte
+# herunter, optimiert sie und committet sie nach public/media.
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/assets/manifest.json"
+      - "tools/assets/fetch.py"
+      - ".github/workflows/fetch-assets.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-assets
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Install tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg > /dev/null
+          pip install -q --upgrade pillow requests
+          pip install -q --upgrade --pre "yt-dlp[default]"
+          yt-dlp --version
+          ffmpeg -version | head -1
+
+      - name: Fetch assets
+        run: python tools/assets/fetch.py
+
+      - name: Commit assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A public/media tools/assets/preview tools/assets/report.json || true
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+            exit 0
+          fi
+          git commit -m "Fetch media assets [skip ci]"
+          for i in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
