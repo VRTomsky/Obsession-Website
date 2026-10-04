@@ -118,11 +118,14 @@ for vid in youtube:
     images.append({"url": f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg", "out": f"public/media/yt/{vid}-hq.webp",
                    "quality": 80})
 
+IMDB = "https://www.imdb.com/video/"
 videos = [
-    {"id": "trailer", "sources": ["https://www.youtube.com/watch?v=gMC8kkwbIQQ"], "sheet": True, "clips": []},
-    {"id": "freaky-nikki", "sources": ["https://www.youtube.com/watch?v=HaZsOipO-xE"], "sheet": True, "clips": []},
-    {"id": "wish-preview", "sources": ["https://www.youtube.com/watch?v=tYQgZc0N0cY"], "sheet": True,
-     "sheet_fps": 0.5, "clips": []},
+    {"id": "trailer", "sources": [IMDB + "vi2176961305/", IMDB + "vi3770862361/",
+                                  "https://www.youtube.com/watch?v=gMC8kkwbIQQ"], "sheet": True, "clips": []},
+    {"id": "freaky-nikki", "sources": [IMDB + "vi688900889/", IMDB + "vi2719533849/",
+                                       "https://www.youtube.com/watch?v=HaZsOipO-xE"], "sheet": True, "clips": []},
+    {"id": "nice-date", "sources": [IMDB + "vi118475545/", IMDB + "vi3189230361/"], "sheet": True, "clips": []},
+    {"id": "teaser", "sources": [IMDB + "vi3051539225/", IMDB + "vi464898841/"], "sheet": True, "clips": []},
 ]
 
 out = Path(__file__).with_name("manifest.json")

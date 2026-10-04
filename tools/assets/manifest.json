@@ -1063,6 +1063,8 @@
   {
    "id": "trailer",
    "sources": [
+    "https://www.imdb.com/video/vi2176961305/",
+    "https://www.imdb.com/video/vi3770862361/",
     "https://www.youtube.com/watch?v=gMC8kkwbIQQ"
    ],
    "sheet": true,
@@ -1071,18 +1073,29 @@
   {
    "id": "freaky-nikki",
    "sources": [
+    "https://www.imdb.com/video/vi688900889/",
+    "https://www.imdb.com/video/vi2719533849/",
     "https://www.youtube.com/watch?v=HaZsOipO-xE"
    ],
    "sheet": true,
    "clips": []
   },
   {
-   "id": "wish-preview",
+   "id": "nice-date",
    "sources": [
-    "https://www.youtube.com/watch?v=tYQgZc0N0cY"
+    "https://www.imdb.com/video/vi118475545/",
+    "https://www.imdb.com/video/vi3189230361/"
    ],
    "sheet": true,
-   "sheet_fps": 0.5,
+   "clips": []
+  },
+  {
+   "id": "teaser",
+   "sources": [
+    "https://www.imdb.com/video/vi3051539225/",
+    "https://www.imdb.com/video/vi464898841/"
+   ],
+   "sheet": true,
    "clips": []
   }
  ]
