@@ -128,11 +128,22 @@ def direct(vid):
     return [q[k] for k in ("1080p", "720p") if k in q]
 
 
+V = "public/media/video/"
 videos = [
-    {"id": "trailer", "sources": direct("vi2176961305") + [IMDB + "vi2176961305/"], "sheet": True, "clips": []},
-    {"id": "freaky-nikki", "sources": direct("vi688900889") + [IMDB + "vi688900889/"], "sheet": True, "clips": []},
-    {"id": "nice-date", "sources": direct("vi118475545") + [IMDB + "vi118475545/"], "sheet": True, "clips": []},
-    {"id": "teaser", "sources": direct("vi3051539225") + [IMDB + "vi3051539225/"], "sheet": True, "clips": []},
+    {"id": "trailer", "sources": direct("vi2176961305") + [IMDB + "vi2176961305/"], "sheet": False, "clips": [
+        {"start": 120.2, "duration": 10.6, "out": V + "hero", "width": 1920, "crf": 24},
+        {"start": 32.4, "duration": 2.6, "out": V + "willow", "width": 1280, "crf": 25},
+        {"start": 78.0, "duration": 5.0, "out": V + "party", "width": 1280, "crf": 26},
+    ]},
+    {"id": "teaser", "sources": direct("vi3051539225") + [IMDB + "vi3051539225/"], "sheet": False, "clips": [
+        {"start": 19.0, "duration": 3.9, "out": V + "house", "width": 1280, "crf": 25},
+    ]},
+    {"id": "freaky-nikki", "sources": direct("vi688900889") + [IMDB + "vi688900889/"], "sheet": False, "clips": [
+        {"start": 32.0, "duration": 8.5, "out": V + "nikki", "width": 1280, "crf": 25},
+    ]},
+    {"id": "nice-date", "sources": direct("vi118475545") + [IMDB + "vi118475545/"], "sheet": False, "clips": [
+        {"start": 1.0, "duration": 7.5, "out": V + "date", "width": 1280, "crf": 26},
+    ]},
 ]
 
 out = Path(__file__).with_name("manifest.json")
