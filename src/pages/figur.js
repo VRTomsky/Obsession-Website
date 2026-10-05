@@ -119,7 +119,7 @@ createFeed({
   items: characters,
   param: 'c',
   href: (c) => `figur.html?c=${c.slug}`,
-  title: (c) => t(c.name),
+  title: (c) => t(c.name).replace(/\u00AD/g, ''),
   dock: (c) => c.hero,
   render,
   end: () => `<section class="feed-end wrap"><p class="kicker no-line">${lang === 'de' ? 'Alle Figuren gesehen' : 'You\'ve met every character'}</p><p class="h-xl">OBSESSION</p><a class="btn btn--red" href="index.html#figuren">${esc(t(ui.backHome))} <span class="arrow">→</span></a></section>`,

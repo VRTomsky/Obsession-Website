@@ -92,7 +92,7 @@ export const M = {
     redFace: po(16),
   },
   commons: {
-    castTiff: cm('obsession-cast-and-crew-at-the-2025-toronto-international-film-festival.webp'),
+    castTiff: cm('obsession-cast-and-crew-tiff25.webp'),
     trio: cm('michael-johnston-curry-barker-inde-navarrette-2.webp'),
     trioQa: cm('curry-barker-inde-navarrette-michael-johnston.webp'),
     qa: cm('obsession-q-a-2026-century-city.webp'),

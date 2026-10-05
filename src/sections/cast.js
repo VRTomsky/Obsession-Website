@@ -76,7 +76,7 @@ export function charactersHTML() {
           .map((c, i) => {
             const actor = people.find((p) => p.slug === c.actor);
             return `
-          <a class="ccard" href="${charUrl(c.slug)}" data-title="${esc(t(c.name))}" data-cursor="${esc(t(ui.open))}" style="--d:${i}">
+          <a class="ccard" href="${charUrl(c.slug)}" data-title="${esc(t(c.name).replace(/\u00AD/g, ''))}" data-cursor="${esc(t(ui.open))}" style="--d:${i}">
             <div class="ccard__media"><img src="${c.hero}" alt="" loading="lazy" /></div>
             <span class="ccard__n mono">${String(i + 1).padStart(2, '0')}</span>
             <div class="ccard__body">
