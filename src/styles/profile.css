@@ -576,6 +576,12 @@
     right: 50%;
     transform: translateX(50%);
     flex-direction: row;
+    max-width: calc(100vw - 24px);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .dock a {
+    flex: 0 0 auto;
   }
   .prof__facts,
   .upcoming {
@@ -590,5 +596,12 @@
   }
   .prof__block > .kicker {
     position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .upcoming,
+  .prof__facts {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

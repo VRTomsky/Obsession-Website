@@ -79,8 +79,8 @@ export function createFeed(cfg) {
         if (target) scrollTo(target);
       });
       const io = new IntersectionObserver(
-        ([en]) => {
-          if (!en.isIntersecting) return;
+        (es) => {
+          if (!es.some((e) => e.isIntersecting)) return;
           io.disconnect();
           if (count < max) append(count);
           else root.appendChild(el(cfg.end()));

@@ -70,7 +70,7 @@ export function initFans() {
     track.style.transform = `translate3d(${x}px,0,0)`;
   });
   const v = $('.fanclip video');
-  new IntersectionObserver(([en]) => (en.isIntersecting ? v.play().catch(() => {}) : v.pause())).observe(v);
+  new IntersectionObserver((es) => (es[es.length - 1].isIntersecting ? v.play().catch(() => {}) : v.pause())).observe(v);
 }
 
 /* ---------------- Theorien ---------------- */

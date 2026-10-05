@@ -56,8 +56,8 @@ export async function initWillow() {
   // Erst laden, wenn der Bereich in die Nähe kommt
   await new Promise((res) => {
     const io = new IntersectionObserver(
-      ([en]) => {
-        if (en.isIntersecting) {
+      (es) => {
+        if (es.some((e) => e.isIntersecting)) {
           io.disconnect();
           res();
         }

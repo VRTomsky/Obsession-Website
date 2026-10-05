@@ -112,7 +112,7 @@ export function behindHTML() {
 export function initBehind() {
   // Hintergrundvideos nur im Sichtbereich abspielen
   $$('.alt__bg').forEach((v) => {
-    const io = new IntersectionObserver(([en]) => (en.isIntersecting ? v.play().catch(() => {}) : v.pause()));
+    const io = new IntersectionObserver((es) => (es[es.length - 1].isIntersecting ? v.play().catch(() => {}) : v.pause()));
     io.observe(v);
   });
   gsap.fromTo('.alt__bg', { scale: 1.2 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.alt', start: 'top bottom', end: 'bottom top', scrub: true } });

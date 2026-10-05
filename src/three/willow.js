@@ -306,7 +306,8 @@ export async function createWillow(container) {
   el.addEventListener('pointerup', up);
   el.addEventListener('pointercancel', up);
 
-  const io = new IntersectionObserver(([en]) => (visible = en.isIntersecting));
+  // mehrere Einträge pro Aufruf möglich: der letzte ist der aktuelle Zustand
+  const io = new IntersectionObserver((es) => (visible = es[es.length - 1].isIntersecting));
   io.observe(container);
 
   function doBreak() {

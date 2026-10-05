@@ -146,7 +146,8 @@ export function createHeroGL(container, video) {
   };
   window.addEventListener('pointermove', onMove);
 
-  const io = new IntersectionObserver(([en]) => (visible = en.isIntersecting));
+  // mehrere Einträge pro Aufruf möglich: der letzte ist der aktuelle Zustand
+  const io = new IntersectionObserver((es) => (visible = es[es.length - 1].isIntersecting));
   io.observe(container);
 
   const timer = new THREE.Timer();
@@ -172,6 +173,7 @@ export function createHeroGL(container, video) {
 
   return {
     uniforms,
+    renderer,
     setProgress: (p) => (uniforms.uProgress.value = p),
     setGlitch: (g) => (glitchTarget = g),
     destroy() {

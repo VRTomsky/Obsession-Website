@@ -2602,3 +2602,71 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 860px) {
+  .bts__nums {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .chars__head {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px 24px;
+  }
+  .chars__head .h-l {
+    flex-basis: 100%;
+    order: 2;
+  }
+  .chars__intro {
+    width: 70vw;
+    padding-right: 20px;
+  }
+  .ccard {
+    width: 78vw;
+  }
+}
+
+/* Smartphones: alles einspaltig bzw. schmale Raster, nichts ragt über den Rand */
+@media (max-width: 600px) {
+  .records,
+  .franchise,
+  .castnext,
+  .why__grid,
+  .themes__grid,
+  .dates__list,
+  .bts__nums {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .facts,
+  .trivia,
+  .scores,
+  .discs,
+  .cast__support,
+  .stream__grid,
+  .countdown {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .record,
+  .record:not(:nth-child(4n + 1)) {
+    padding: 26px 0;
+    border-left: 0;
+  }
+  .wish__row,
+  .cinema__form {
+    flex-wrap: wrap;
+  }
+  .wish__row > *,
+  .cinema__form > * {
+    flex: 1 1 100%;
+  }
+  .nfilm {
+    padding: 22px;
+  }
+  .wchart {
+    height: 300px;
+    gap: 4px;
+  }
+  .wchart__ch,
+  .wchart__lbl {
+    font-size: 8.5px;
+  }
+}
