@@ -30,7 +30,7 @@ export const menu = [
 export const ui = {
   menu: { de: 'Menü', en: 'Menu' },
   close: { de: 'Schließen', en: 'Close' },
-  sound: { de: 'Ton: offizieller Soundtrack „Love Is in the Air" (lädt YouTube)', en: 'Sound: official soundtrack "Love Is in the Air" (loads YouTube)' },
+  sound: { de: 'Ton: Soundtrack „Love Is in the Air" (Hörproben über Apple)', en: 'Sound: soundtrack "Love Is in the Air" (previews via Apple)' },
   soundOn: { de: 'Ton an', en: 'Sound on' },
   soundOff: { de: 'Ton aus', en: 'Sound off' },
   scroll: { de: 'Scrollen', en: 'Scroll' },

@@ -179,6 +179,14 @@ def fetch_videos(items):
             entry["probe"] = json.loads(probe.stdout or "{}")
             if vid.get("sheet"):
                 entry["sheets"] = contact_sheet(video, vid["id"], vid.get("sheet_fps", 1.0))
+            if vid.get("frames"):
+                # Einzelbilder zum Aussuchen von Szenenfotos (werden danach wieder entfernt)
+                fdir = ROOT / "tools/assets/frames" / vid["id"]
+                shutil.rmtree(fdir, ignore_errors=True)
+                fdir.mkdir(parents=True)
+                run(["ffmpeg", "-loglevel", "error", "-i", str(video), "-vf",
+                     f"fps={vid['frames']},scale=1280:-2", "-q:v", "4", str(fdir / "%04d.jpg")])
+                entry["frames"] = len(list(fdir.glob("*.jpg")))
             entry["clips"] = {c["out"]: make_clip(video, c) for c in vid.get("clips", [])}
         except Exception as exc:  # noqa: BLE001
             entry["error"] = str(exc)[-3000:]

@@ -171,6 +171,13 @@ videos = [
 import sys
 if "--videos" not in sys.argv:
     videos = []
+# --frames: nur Einzelbilder aus Trailern ziehen (zum Aussuchen neuer Szenenfotos)
+if "--frames" in sys.argv:
+    images = []
+    videos = [
+        {"id": vid, "sources": direct(vid), "sheet": True, "sheet_fps": fps, "frames": fps, "clips": []}
+        for vid, fps in [("vi2176961305", 2), ("vi464898841", 2), ("vi1270270745", 2), ("vi602196761", 2)]
+    ]
 
 out = Path(__file__).with_name("manifest.json")
 out.write_text(json.dumps({"images": images, "videos": videos}, indent=1))

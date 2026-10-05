@@ -1,45 +1,49 @@
-// Ton: der offizielle Soundtrack – „Love Is in the Air, Pt. 1" und „Pt. 2" von Rock Burwell – in Dauerschleife.
-// Abgespielt über den offiziellen YouTube-Player des Labels (Back Lot Music), daher keine eigenen Audiodateien.
-// Standardmäßig AUS: YouTube wird erst geladen, wenn man auf „Ton" klickt. Ein kleiner Player zeigt, was läuft.
-import { lang } from './i18n.js';
+// Ton: „Love Is in the Air, Pt. 1" und „Pt. 2" von Rock Burwell (offizieller Obsession-Soundtrack), leise im Hintergrund.
+// Quelle sind die offiziellen Hörproben (je ca. 30 Sekunden), die Apple über die iTunes-API bereitstellt –
+// ohne Anmeldung, ohne Player-Fenster. Die Titel laufen abwechselnd mit weicher Überblendung in Dauerschleife.
+// Standardmäßig AUS: Es wird erst etwas geladen, wenn man auf „Ton" klickt.
 
 const TRACKS = [
-  { id: 'KzRF5ELw8oU', title: 'Love Is in the Air, Pt. 1' },
-  { id: 'KaNI9VilRAA', title: 'Love Is in the Air, Pt. 2' },
+  {
+    title: 'Love Is in the Air, Pt. 1',
+    url: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/43/04/48/43044896-6e27-a17e-27ce-07ac03fedf03/mzaf_13464821941238773953.plus.aac.p.m4a',
+  },
+  {
+    title: 'Love Is in the Air, Pt. 2',
+    url: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/04/83/59/04835994-0182-b0a9-9dbd-c0e7f2d378b2/mzaf_9826407333688075517.plus.aac.p.m4a',
+  },
 ];
-const VOLUME = 55;
+const VOLUME = 0.3; // hörbar, aber deutlich im Hintergrund
+const FADE = 1.6; // Sekunden Überblendung
 const KEY = 'obsession-music';
 
 let on = false;
-let player = null;
-let playerReady = false;
-let apiPromise = null;
-let card = null;
-let fadeTimer = 0;
+let decks = null; // zwei <audio>, die sich abwechseln
+let cur = 0;
+let idx = 0;
+let raf = 0;
 let ctx = null;
 const listeners = new Set();
 
-function loadApi() {
-  if (apiPromise) return apiPromise;
-  apiPromise = new Promise((resolve) => {
-    if (window.YT?.Player) return resolve(window.YT);
-    const prev = window.onYouTubeIframeAPIReady;
-    window.onYouTubeIframeAPIReady = () => {
-      prev?.();
-      resolve(window.YT);
-    };
-    const s = document.createElement('script');
-    s.src = 'https://www.youtube.com/iframe_api';
-    s.async = true;
-    document.head.appendChild(s);
-  });
-  return apiPromise;
+function makeDeck() {
+  const a = new Audio();
+  a.preload = 'auto';
+  a.volume = 0;
+  a.addEventListener('error', () => a.dataset.failed = '1');
+  return a;
 }
 
-function saved() {
+function load(deck, i, t = 0) {
+  deck.dataset.failed = '';
+  deck.src = TRACKS[i].url;
+  deck.currentTime = 0;
+  if (t) deck.addEventListener('loadedmetadata', () => (deck.currentTime = Math.min(t, (deck.duration || 30) - FADE * 2)), { once: true });
+}
+
+function restore() {
   try {
     const v = JSON.parse(sessionStorage.getItem(KEY) || 'null');
-    if (v && Number.isInteger(v.i) && v.i >= 0 && v.i < TRACKS.length) return v;
+    if (v && (v.i === 0 || v.i === 1)) return v;
   } catch {
     /* egal */
   }
@@ -47,93 +51,75 @@ function saved() {
 }
 
 function save() {
-  if (!playerReady) return;
+  if (!decks) return;
   try {
-    sessionStorage.setItem(KEY, JSON.stringify({ i: Math.max(0, player.getPlaylistIndex()), t: player.getCurrentTime() || 0 }));
+    sessionStorage.setItem(KEY, JSON.stringify({ i: idx, t: decks[cur].currentTime || 0 }));
   } catch {
     /* egal */
   }
 }
 
-function buildCard() {
-  card = document.createElement('aside');
-  card.className = 'music-card';
-  card.setAttribute('aria-label', lang === 'de' ? 'Musik' : 'Music');
-  card.innerHTML = `
-    <div class="music-card__player"><div id="music-player"></div></div>
-    <div class="music-card__meta">
-      <span class="mono music-card__kicker">${lang === 'de' ? 'Offizieller Soundtrack' : 'Official soundtrack'}</span>
-      <b class="music-card__title">${TRACKS[0].title}</b>
-      <span class="music-card__artist">Rock Burwell · Obsession</span>
-      <button type="button" class="music-card__next mono">${lang === 'de' ? 'Nächster Titel' : 'Next track'} →</button>
-    </div>`;
-  document.body.appendChild(card);
-  card.querySelector('.music-card__next').addEventListener('click', () => playerReady && player.nextVideo());
-  window.addEventListener('pagehide', save);
-}
-
-function setTitle() {
-  if (!playerReady || !card) return;
-  const i = Math.max(0, player.getPlaylistIndex());
-  card.querySelector('.music-card__title').textContent = TRACKS[i]?.title || TRACKS[0].title;
-}
-
-function fadeTo(target, done) {
-  clearInterval(fadeTimer);
-  if (!playerReady) return done?.();
-  let v = player.getVolume();
-  const step = target > v ? 4 : -6;
-  fadeTimer = setInterval(() => {
-    v = step > 0 ? Math.min(target, v + step) : Math.max(target, v + step);
-    player.setVolume(v);
-    if (v === target) {
-      clearInterval(fadeTimer);
-      done?.();
-    }
-  }, 50);
-}
-
-async function start() {
-  if (!card) buildCard();
-  card.classList.add('is-on');
-  if (player) {
-    if (playerReady) {
-      player.playVideo();
-      fadeTo(VOLUME);
-    }
-    return;
+// Lautstärke-Regelung und Überblendung in einem rAF-Loop
+let target = 0;
+let crossing = false;
+function tick() {
+  raf = requestAnimationFrame(tick);
+  const a = decks[cur];
+  const b = decks[1 - cur];
+  const step = 1 / 60 / FADE;
+  // nahe am Ende: nächsten Titel auf dem anderen Deck starten
+  if (on && !crossing && a.duration && a.currentTime > a.duration - FADE) {
+    crossing = true;
+    idx = (idx + 1) % TRACKS.length;
+    load(b, idx);
+    b.volume = 0;
+    b.play().catch(() => {});
   }
-  const YT = await loadApi();
-  const pos = saved();
-  player = new YT.Player('music-player', {
-    host: 'https://www.youtube-nocookie.com',
-    width: 160,
-    height: 90,
-    playerVars: { controls: 0, disablekb: 1, playsinline: 1, rel: 0, modestbranding: 1, iv_load_policy: 3 },
-    events: {
-      onReady: () => {
-        playerReady = true;
-        player.setVolume(0);
-        player.loadPlaylist(TRACKS.map((tr) => tr.id), pos.i, Math.floor(pos.t));
-        player.setLoop(true);
-        if (on) fadeTo(VOLUME);
-        else player.pauseVideo();
-      },
-      onStateChange: (e) => {
-        if (e.data === YT.PlayerState.PLAYING) {
-          setTitle();
-          card.classList.remove('needs-tap');
-        }
-      },
-      onError: () => card.classList.add('needs-tap'),
-      onAutoplayBlocked: () => card.classList.add('needs-tap'),
-    },
-  });
+  if (crossing) {
+    a.volume = Math.max(0, a.volume - step * VOLUME);
+    b.volume = Math.min(target, b.volume + step * VOLUME);
+    if (a.volume <= 0.001 && (b.volume >= target - 0.001 || !on)) {
+      a.pause();
+      cur = 1 - cur;
+      crossing = false;
+    }
+  } else {
+    const v = a.volume + Math.sign(target - a.volume) * Math.min(Math.abs(target - a.volume), step * VOLUME * 1.5);
+    a.volume = Math.max(0, Math.min(1, v));
+    if (!on && a.volume <= 0.001) {
+      a.pause();
+      b.pause();
+      cancelAnimationFrame(raf);
+      raf = 0;
+    }
+  }
+}
+
+function start() {
+  if (!decks) {
+    decks = [makeDeck(), makeDeck()];
+    const pos = restore();
+    idx = pos.i;
+    load(decks[0], idx, pos.t);
+    // falls der Titel ohne Überblendung endet (z. B. Tab im Hintergrund): direkt weiter
+    decks.forEach((d, k) =>
+      d.addEventListener('ended', () => {
+        if (!on || k !== cur || crossing) return;
+        idx = (idx + 1) % TRACKS.length;
+        load(d, idx);
+        d.play().catch(() => {});
+      }),
+    );
+    window.addEventListener('pagehide', save);
+  }
+  target = VOLUME;
+  decks[cur].play().catch(() => {});
+  if (!raf) tick();
 }
 
 function stop() {
-  card?.classList.remove('is-on');
-  if (playerReady) fadeTo(0, () => !on && player.pauseVideo());
+  target = 0;
+  save();
 }
 
 export function isSoundOn() {
@@ -175,7 +161,7 @@ export function snapSound() {
   hp.type = 'highpass';
   hp.frequency.value = 1200;
   const g = ctx.createGain();
-  g.gain.value = 0.5;
+  g.gain.value = 0.3;
   src.connect(hp).connect(g).connect(ctx.destination);
   src.start(t);
 }

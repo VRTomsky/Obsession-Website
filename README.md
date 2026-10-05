@@ -29,7 +29,7 @@ Extras: Preloader, Filmkorn, weiches Scrollen, offizieller Soundtrack per Klick 
 - Keine Cookies, kein Tracking, Schriften lokal eingebunden.
 - Standort für den Kino-Finder nur nach Klick und Browser-Freigabe, auf ca. 1 km gerundet, nur an OpenStreetMap (Overpass/Nominatim) gesendet.
 - Karten (Esri-Satellitenbilder bzw. dunkle Karte, ohne API-Schlüssel) und YouTube-Videos laden erst nach ausdrücklichem Klick.
-- „Ton" spielt den offiziellen Soundtrack („Love Is in the Air, Pt. 1 & 2" von Rock Burwell) über den YouTube-Player des Labels – YouTube wird erst mit diesem Klick geladen.
+- „Ton" spielt leise „Love Is in the Air, Pt. 1 & 2" von Rock Burwell – als offizielle Hörproben, die Apple über die iTunes-API bereitstellt (je ca. 30 s, im Wechsel in Dauerschleife). Die vollständigen Songs dürfen nicht auf eine öffentliche Seite hochgeladen werden.
 - Keine Privatadressen – Drehorte nur als ungefähre Lage.
 
 ## Technik
