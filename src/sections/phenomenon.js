@@ -210,6 +210,6 @@ export function initPhenomenon() {
   });
   mm.add('(max-width: 860px)', () => {
     gsap.fromTo('.tline__rail', { scaleY: 0 }, { scaleY: 1, ease: 'none', transformOrigin: 'top', scrollTrigger: { trigger: '.tline__track', start: 'top 70%', end: 'bottom 70%', scrub: true } });
-    $$('.tl').forEach((n) => gsap.from(n, { opacity: 0, x: 30, duration: 0.8, ease: 'expo.out', scrollTrigger: { trigger: n, start: 'top 88%' } }));
+    $$('.tl').forEach((n) => gsap.from(n, { opacity: 0, y: 30, duration: 0.8, ease: 'expo.out', scrollTrigger: { trigger: n, start: 'top 88%' } }));
   });
 }

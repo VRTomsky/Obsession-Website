@@ -257,7 +257,8 @@ export function initYouTube(root = document) {
 export function marquee(items, cls = '') {
   const star = '<svg class="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0l2.9 8.6H24l-7.3 5.4 2.8 8.7L12 17.3l-7.5 5.4 2.8-8.7L0 8.6h9.1z"/></svg>';
   const row = items.map((it, i) => `<span class="marquee__item"><span class="${i % 2 ? 'o' : ''}">${esc(it)}</span>${star}</span>`).join('');
-  return `<div class="marquee ${cls}" aria-hidden="true"><div class="marquee__track">${row}${row}${row}${row}</div></div>`;
+  // äußere Hülle schneidet das (beim roten Band leicht gedrehte) Laufband seitlich ab
+  return `<div class="marquee-clip"><div class="marquee ${cls}" aria-hidden="true"><div class="marquee__track">${row}${row}${row}${row}</div></div></div>`;
 }
 
 export function initMarquees(root = document) {

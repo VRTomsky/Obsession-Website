@@ -549,6 +549,13 @@ html.is-entering .curtain i {
   color: var(--red);
 }
 
+.marquee-clip {
+  overflow-x: clip;
+  overflow-y: visible;
+  padding: 14px 0;
+  margin: -14px 0;
+}
+
 .marquee--red {
   background: var(--red);
   border-color: transparent;

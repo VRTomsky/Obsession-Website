@@ -2786,7 +2786,8 @@
     margin-bottom: 30px;
   }
   .tline__track {
-    width: auto;
+    width: 100%;
+    box-sizing: border-box;
     flex-direction: column;
     gap: 34px;
     padding: 0 var(--gutter) 0 calc(var(--gutter) + 30px);
@@ -2801,6 +2802,8 @@
   }
   .tl {
     width: auto;
+    max-width: 100%;
+    min-width: 0;
   }
   .tl__dot {
     top: 6px;
