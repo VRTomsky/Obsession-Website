@@ -84,7 +84,7 @@ export const chapters = [
   {
     n: 'V',
     title: { de: 'Kundenservice', en: 'Customer Service' },
-    img: M.still.phone,
+    img: M.still.chapterCarCall,
     text: {
       de: 'Die Tür ist mit Klebeband zugeklebt. Im Sandwich, das Nikki ihm gemacht hat, steckt Sandy. Bear ruft die Hotline des One Wish Willow an. Die freundliche Stimme erklärt: Der Wunsch läuft erst ab, wenn er stirbt. Dann wird Nikki in die Leitung gestellt – sie schreit. Als Bear abends heimkommt, steht sie noch genau dort, wo er sie verlassen hat. Den ganzen Tag.',
       en: 'The door is taped shut. The sandwich Nikki made him contains Sandy. Bear calls the One Wish Willow hotline. The friendly voice explains: the wish only expires when he dies. Then Nikki is put on the line – screaming. When Bear gets home that evening, she is standing exactly where he left her. All day.',
@@ -111,7 +111,7 @@ export const chapters = [
   {
     n: 'VIII',
     title: { de: 'Der Park', en: 'The Park' },
-    img: M.still.park,
+    img: M.still.chapterBearSarah,
     text: {
       de: 'Sarah trifft Bear heimlich im Park. Sie erzählt ihm, dass Ian und Nikki zwei Jahre lang etwas miteinander hatten, und dass Nikki ihn vielleicht nur benutzt. Dann deutet Sarah an, dass sie selbst Gefühle für Bear hat. Nikki schlägt die Autoscheibe ein. Sarah überlebt die Nacht nicht.',
       en: 'Sarah secretly meets Bear in the park. She tells him that Ian and Nikki had a thing for two years, and that Nikki might just be using him. Then Sarah hints that she has feelings for Bear herself. Nikki smashes through the car window. Sarah doesn\'t survive the night.',
@@ -120,7 +120,7 @@ export const chapters = [
   {
     n: 'IX',
     title: { de: 'Eine Milliarde', en: 'A Billion' },
-    img: M.still.willow,
+    img: M.still.chapterIanStore,
     text: {
       de: 'Bear kauft alle restlichen Willows, kann aber keinen davon zerbrechen. Er beichtet Ian alles und fleht ihn an, den Wunsch rückgängig zu machen. Ian glaubt ihm kein Wort – und wünscht sich sarkastisch eine Milliarde Dollar. Geld regnet von der Decke.',
       en: 'Bear buys every remaining Willow but can\'t break a single one. He confesses everything to Ian and begs him to undo the wish. Ian doesn\'t believe a word – and sarcastically wishes for a billion dollars. Cash rains from the ceiling.',

@@ -6,6 +6,14 @@ import { sections } from '../data/site.js';
 import { headline, weekends, markets, comparison, records, timeline, whyItWorked, fairNote } from '../data/phenomenon.js';
 import { M } from '../data/media.js';
 
+const TL_ICONS = {
+  yt: '<svg viewBox="0 0 48 34" aria-hidden="true"><rect width="48" height="34" rx="9" fill="currentColor"/><path d="M19 10l13 7-13 7z" fill="#0b0b0e"/></svg>',
+  eye: '<svg viewBox="0 0 48 30" aria-hidden="true"><path d="M2 15C8 5 16 1 24 1s16 4 22 14c-6 10-14 14-22 14S8 25 2 15z" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="24" cy="15" r="7" fill="currentColor"/></svg>',
+  deal: '<svg viewBox="0 0 48 34" aria-hidden="true"><rect x="2" y="2" width="44" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M10 24l8-9 7 6 13-12" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>',
+  up: '<svg viewBox="0 0 48 34" aria-hidden="true"><path d="M2 32h44" stroke="currentColor" stroke-width="2.5"/><path d="M6 28l10-8 8 4 18-20" fill="none" stroke="currentColor" stroke-width="3"/><path d="M34 4h8v8" fill="none" stroke="currentColor" stroke-width="3"/></svg>',
+};
+const tlIcon = (k) => TL_ICONS[k] || '';
+
 export function phenomenonHTML() {
   const s = sections.phaenomen;
   const maxW = Math.max(...weekends.map((w) => w.g));
@@ -123,7 +131,8 @@ export function phenomenonHTML() {
     <div class="tline">
       <div class="tline__pin">
         <div class="wrap tline__head">
-          <p class="kicker">${lang === 'de' ? 'Vom YouTube-Kanal zum Rekord' : 'From YouTube channel to record'}</p>
+          <p class="kicker">${lang === 'de' ? 'Die Zeitleiste' : 'The timeline'}</p>
+          <h3 class="h-l">${lang === 'de' ? 'Vom YouTube-Kanal zum Rekord' : 'From YouTube channel to record'}</h3>
         </div>
         <div class="tline__track">
           <span class="tline__rail"></span>
@@ -132,6 +141,11 @@ export function phenomenonHTML() {
               (e) => `
             <article class="tl">
               <span class="tl__dot"></span>
+              ${
+                e.img
+                  ? `<figure class="tl__media"><img src="${e.img}" alt="" loading="lazy" /></figure>`
+                  : `<figure class="tl__media tl__media--g">${tlIcon(e.g.icon)}<b class="display">${esc(lang === 'en' && e.g.bigEn ? e.g.bigEn : e.g.big)}</b><span class="mono">${esc(t(e.g.small))}</span></figure>`
+              }
               <p class="mono red tl__d">${esc(t(e.d))}</p>
               <h4 class="h-m">${esc(t(e.t))}</h4>
               <p>${esc(t(e.x))}</p>
@@ -206,7 +220,10 @@ export function initPhenomenon() {
       scrollTrigger: { trigger: '.tline', start: 'top top', end: () => `+=${dist()}`, pin: '.tline__pin', scrub: 0.8, invalidateOnRefresh: true },
     });
     gsap.fromTo('.tline__rail', { scaleX: 0 }, { scaleX: 1, ease: 'none', transformOrigin: 'left', scrollTrigger: { trigger: '.tline', start: 'top top', end: () => `+=${dist()}`, scrub: 0.8, invalidateOnRefresh: true } });
-    $$('.tl').forEach((n) => gsap.from(n, { opacity: 0.15, y: 40, duration: 0.8, scrollTrigger: { trigger: n, containerAnimation: tw, start: 'left 85%' } }));
+    // nur Karten, die beim Einrasten noch rechts außerhalb liegen, werden eingeblendet
+    $$('.tl')
+      .filter((n) => n.offsetLeft > window.innerWidth * 0.8)
+      .forEach((n) => gsap.from(n, { opacity: 0.15, y: 40, duration: 0.8, scrollTrigger: { trigger: n, containerAnimation: tw, start: 'left 85%' } }));
   });
   mm.add('(max-width: 860px)', () => {
     gsap.fromTo('.tline__rail', { scaleY: 0 }, { scaleY: 1, ease: 'none', transformOrigin: 'top', scrollTrigger: { trigger: '.tline__track', start: 'top 70%', end: 'bottom 70%', scrub: true } });

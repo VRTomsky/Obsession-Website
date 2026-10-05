@@ -3,3 +3,5 @@ dist/
 .DS_Store
 *.log
 tools/assets/imdb_urls.json
+tools/assets/frames/
+tools/assets/preview/
