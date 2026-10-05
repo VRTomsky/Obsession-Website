@@ -1,6 +1,6 @@
 // „Der Film": Einleitung, Eckdaten, Handlung in Kapiteln (Sticky-Bilder), Themen, 3D-Galerie, Videos.
 import { gsap, ScrollTrigger } from '../core/scroll.js';
-import { $, $$, esc } from '../core/dom.js';
+import { $, $$, esc, reducedMotion } from '../core/dom.js';
 import { t, lang } from '../core/i18n.js';
 import { M, gallery } from '../data/media.js';
 import { sections } from '../data/site.js';
@@ -92,12 +92,12 @@ export function filmHTML() {
         <p class="kicker no-line">${lang === 'de' ? 'Bilder aus dem Film' : 'Stills from the film'}</p>
         <p class="h-mega outline">${lang === 'de' ? 'Galerie' : 'Gallery'}</p>
       </div>
-      <div class="ring" data-cursor="${lang === 'de' ? 'Ziehen' : 'Drag'}">
+      <div class="ring">
         <div class="ring__spin">
-          ${gallery.map((g, i) => `<button class="ring__item" style="--i:${i}" data-g="${i}" aria-label="Bild ${i + 1}"><img src="${g}" alt="" loading="lazy" /></button>`).join('')}
+          ${gallery.map((g, i) => `<button class="ring__item" style="--i:${i}" data-g="${i}" aria-label="Bild ${i + 1}"><img src="${g}" alt="" loading="lazy" draggable="false" /></button>`).join('')}
         </div>
       </div>
-      <p class="ring-sec__hint mono">${lang === 'de' ? 'Scrollen oder ziehen · Klick vergrößert' : 'Scroll or drag · click to enlarge'}</p>
+      <p class="ring-sec__hint mono">${lang === 'de' ? 'Mit gedrückter Maus ziehen · Klick vergrößert' : 'Click and drag to spin · click to enlarge'}</p>
     </div>
   </section>
 
@@ -133,15 +133,15 @@ export function initFilm() {
     });
   });
 
-  // 3D-Ring: dreht sich beim Scrollen und per Ziehen
-  const ringSec = $('.ring-sec');
+  // 3D-Ring: dreht sich von selbst; Ziehen mit gedrückter Maus beschleunigt ihn, Klick öffnet das Bild.
+  // Scrollen bewegt den Ring nicht – die Seite läuft einfach weiter.
   const spin = $('.ring__spin');
   const items = $$('.ring__item');
+  const ring = $('.ring');
   const n = items.length;
-  const state = { scroll: 0, drag: 0, vel: 0 };
   const radius = () => {
     const w = items[0].offsetWidth || 280;
-    return (w + 26) / 2 / Math.tan(Math.PI / n);
+    return (w + 22) / 2 / Math.tan(Math.PI / n);
   };
   const layout = () => {
     const r = radius();
@@ -152,49 +152,68 @@ export function initFilm() {
   };
   layout();
   window.addEventListener('resize', layout);
+  gsap.fromTo('.ring', { scale: 0.75, rotateX: 16 }, { scale: 1, rotateX: 5, ease: 'none', scrollTrigger: { trigger: '.ring-sec', start: 'top bottom', end: 'center center', scrub: true } });
 
-  ScrollTrigger.create({
-    trigger: ringSec,
-    start: 'top top',
-    end: '+=160%',
-    pin: '.ring-sec__pin',
-    scrub: true,
-    onUpdate: (self) => (state.scroll = self.progress * -200),
-  });
-  gsap.fromTo('.ring', { scale: 0.7, rotateX: 18 }, { scale: 1, rotateX: 6, ease: 'none', scrollTrigger: { trigger: ringSec, start: 'top bottom', end: 'top top', scrub: true } });
-
+  const auto = reducedMotion() ? 0 : -0.06; // Grad pro Frame (~60 fps)
+  let angle = 0;
+  let vel = auto;
   let down = false;
   let lastX = 0;
+  let lastT = 0;
   let moved = 0;
-  const ring = $('.ring');
+  let downItem = null;
+  let visible = false;
+  new IntersectionObserver((es) => (visible = es[es.length - 1].isIntersecting)).observe(ring);
+
   ring.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;
+    e.preventDefault(); // keine Text-/Bildauswahl beim Ziehen
     down = true;
     moved = 0;
     lastX = e.clientX;
+    lastT = performance.now();
+    downItem = e.target.closest('.ring__item');
+    ring.classList.add('is-dragging');
+    ring.setPointerCapture(e.pointerId);
   });
-  window.addEventListener('pointermove', (e) => {
+  ring.addEventListener('pointermove', (e) => {
     if (!down) return;
     const dx = e.clientX - lastX;
+    const now = performance.now();
     moved += Math.abs(dx);
-    state.vel = dx * 0.18;
-    state.drag += dx * 0.18;
+    const d = dx * 0.16;
+    angle += d;
+    vel = d / Math.max((now - lastT) / 16.7, 0.5);
     lastX = e.clientX;
+    lastT = now;
   });
-  window.addEventListener('pointerup', () => (down = false));
-  let cur = 0;
-  gsap.ticker.add(() => {
-    if (!down) {
-      state.vel *= 0.94;
-      state.drag += state.vel;
-    }
-    const target = state.scroll + state.drag;
-    cur += (target - cur) * 0.08;
-    spin.style.transform = `translateZ(calc(var(--r) * -1)) rotateY(${cur}deg)`;
-  });
+  const up = (e) => {
+    if (!down) return;
+    down = false;
+    ring.classList.remove('is-dragging');
+    if (moved < 6 && downItem) openLightbox(gallery, parseInt(downItem.dataset.g, 10));
+    downItem = null;
+    if (e?.pointerId != null && ring.hasPointerCapture(e.pointerId)) ring.releasePointerCapture(e.pointerId);
+  };
+  ring.addEventListener('pointerup', up);
+  ring.addEventListener('pointercancel', up);
+  ring.addEventListener('dragstart', (e) => e.preventDefault());
   items.forEach((it) =>
-    it.addEventListener('click', () => {
-      if (moved > 8) return;
-      openLightbox(gallery, parseInt(it.dataset.g, 10));
+    it.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(gallery, parseInt(it.dataset.g, 10));
+      }
     }),
   );
+
+  gsap.ticker.add((time, dtMs) => {
+    if (!visible) return;
+    const k = Math.min(dtMs / 16.7, 3);
+    if (!down) {
+      vel += (auto - vel) * 0.03 * k; // Schwung läuft aus, zurück zur Eigenrotation
+      angle += vel * k;
+    }
+    spin.style.transform = `translateZ(calc(var(--r) * -1)) rotateY(${angle}deg)`;
+  });
 }

@@ -19,7 +19,6 @@ export function heroHTML() {
         </video>
       </div>
       <div class="hero__content">
-        <p class="hero__kicker mono">${t(ui.fanSite)}</p>
         <h1 class="hero__logo"><img src="${M.logo.glow}" alt="OBSESSION" width="2400" height="573" /></h1>
         ${lang === 'de' ? `<p class="hero__sub">${ui.subtitleDe}</p>` : ''}
         <p class="hero__tag serif-i">${t(ui.tagline)}</p>
@@ -87,7 +86,7 @@ export function initHero() {
     },
   });
   tl.to(logo, { x: () => fly.x, y: () => fly.y, scale: () => fly.s, duration: 0.3, ease: 'power2.inOut' }, 0)
-    .to('.hero__kicker, .hero__sub, .hero__tag, .hero__bottom', { opacity: 0, y: -30, duration: 0.15 }, 0)
+    .to('.hero__sub, .hero__tag, .hero__bottom', { opacity: 0, y: -30, duration: 0.15 }, 0)
     .to(logo, { opacity: 0, duration: 0.04 }, 0.27)
     .fromTo('.hero__line.l0', { opacity: 0, yPercent: 40, filter: 'blur(14px)' }, { opacity: 1, yPercent: 0, filter: 'blur(0px)', duration: 0.12 }, 0.34)
     .fromTo('.hero__line.l1', { opacity: 0, yPercent: 40, filter: 'blur(14px)' }, { opacity: 1, yPercent: 0, filter: 'blur(0px)', duration: 0.12 }, 0.5)
@@ -101,7 +100,7 @@ export function initHero() {
       else tl2.fromTo(video, { opacity: 0 }, { opacity: 1, duration: 2 }, 0);
       tl2
         .from(logo, { opacity: 0, scale: 1.08, filter: 'blur(20px)', duration: 1.8, ease: 'expo.out' }, 0.2)
-        .from('.hero__kicker, .hero__sub, .hero__tag', { opacity: 0, y: 24, duration: 1.2, ease: 'expo.out', stagger: 0.1 }, 0.6)
+        .from('.hero__sub, .hero__tag', { opacity: 0, y: 24, duration: 1.2, ease: 'expo.out', stagger: 0.1 }, 0.6)
         .from('.hero__bottom > *', { opacity: 0, y: 16, duration: 1, ease: 'expo.out', stagger: 0.08 }, 0.9)
         .add(() => ScrollTrigger.refresh());
       return tl2;

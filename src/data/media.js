@@ -75,6 +75,11 @@ export const M = {
     selfie: st('jJUYB1WUZhP3NbbdxLeC3ERNGK'),
     btsCamera: st('rnJNjnL4MxXn5h5d9GbcdCzHIim'),
     btsMonitor: st('5XOzVZ5SZsgNh12fVOMT6jbi6Vd'),
+    redRoom: st('9084VjayGQb5pXktjOo1obFAY4O'),
+    ianParty: st('ian-party'),
+    ianPartyWide: st('ian-party-wide'),
+    sarahParty: st('sarah-party'),
+    sarahPartyWide: st('sarah-party-wide'),
   },
   poster: {
     main: po(1),
@@ -108,7 +113,8 @@ export const gallery = [
   'willow', 'shop', 'storeCouple', 'storePhone', 'wish', 'nikkiNight', 'bed', 'nikkiSmile', 'happy', 'date', 'pout',
   'watching', 'hallway', 'phone', 'friends', 'party', 'partyLook', 'bloodShock', 'bloodSmile', 'scream', 'park',
   'carHouse', 'redDoorScratch', 'flowers', 'polaroid', 'note', 'willowHold', 'finaleNikki', 'candles', 'screamWindow',
-  'finale', 'btsCamera', 'btsMonitor',
+  'finale', 'btsCamera', 'btsMonitor', 'nikkiSmile2', 'dateOff', 'bloodGrin', 'doorway', 'houseNight', 'redDoor',
+  'polaroid2', 'selfie', 'bedShock', 'store', 'wishClose', 'ianParty', 'sarahParty', 'redRoom',
 ].map((k) => M.still[k]);
 
 export const peopleImg = {

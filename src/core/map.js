@@ -1,13 +1,13 @@
-// Leaflet-Karte (dunkle CARTO-Kacheln) – wird nur nach Einwilligung geladen.
+// Leaflet-Karte (OpenStreetMap-Kacheln, per CSS abgedunkelt, kein API-Schlüssel nötig) – wird nur nach Einwilligung geladen.
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 export async function makeMap(id, center, zoom) {
   const map = L.map(id, { zoomControl: true, scrollWheelZoom: false, attributionControl: true }).setView(center, zoom);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap-Mitwirkende &copy; CARTO',
-    subdomains: 'abcd',
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>-Mitwirkende',
     maxZoom: 19,
+    className: 'map-tiles-dark',
   }).addTo(map);
   setTimeout(() => map.invalidateSize(), 100);
   return map;

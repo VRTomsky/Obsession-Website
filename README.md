@@ -28,7 +28,7 @@ Extras: Preloader, Filmkorn, eigener Cursor, weiches Scrollen, synthetischer Sou
 
 - Keine Cookies, kein Tracking, Schriften lokal eingebunden.
 - Standort für den Kino-Finder nur nach Klick und Browser-Freigabe, auf ca. 1 km gerundet, nur an OpenStreetMap (Overpass/Nominatim) gesendet.
-- Karten (CARTO/OpenStreetMap) und YouTube-Videos laden erst nach ausdrücklichem Klick.
+- Karten (OpenStreetMap, ohne API-Schlüssel) und YouTube-Videos laden erst nach ausdrücklichem Klick.
 - Keine Privatadressen – Drehorte nur als ungefähre Lage.
 
 ## Technik

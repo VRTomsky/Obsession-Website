@@ -6,6 +6,7 @@ import { $, $$, esc, reducedMotion } from './dom.js';
 import { t } from './i18n.js';
 import { ui } from '../data/site.js';
 import { M } from '../data/media.js';
+import { stopScroll, startScroll } from './scroll.js';
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -30,7 +31,7 @@ export function initReveals(root = document) {
     if (node.dataset.done) return;
     node.dataset.done = '1';
     if (rm) return;
-    const split = SplitText.create(node, { type: 'chars', mask: 'chars', charsClass: 'split-char' });
+    const split = SplitText.create(node, { type: 'words,chars', mask: 'chars', charsClass: 'split-char', wordsClass: 'split-word' });
     gsap.from(split.chars, {
       yPercent: 115,
       rotate: 6,
@@ -166,37 +167,50 @@ export function initMagnets(root = document) {
 
 /* ---------- Lightbox ---------- */
 let lb = null;
+function lbShow(i) {
+  const list = lb._list;
+  lb._i = (i + list.length) % list.length;
+  const img = lb.querySelector('img');
+  gsap.fromTo(img, { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'expo.out' });
+  img.src = list[lb._i];
+  lb.querySelector('.lb-count').textContent = `${lb._i + 1} / ${list.length}`;
+}
+function lbClose() {
+  lb.classList.remove('is-open');
+  startScroll();
+}
 export function openLightbox(list, index = 0) {
   if (!lb) {
     lb = document.createElement('div');
     lb.className = 'lightbox';
-    lb.innerHTML = `<button class="icon-btn lightbox__close" type="button">${esc(t(ui.close))} ✕</button><img alt="" /><div class="lightbox__nav"><button class="icon-btn" data-d="-1" type="button">←</button><span class="mono lb-count" style="align-self:center"></span><button class="icon-btn" data-d="1" type="button">→</button></div>`;
+    lb.setAttribute('role', 'dialog');
+    lb.innerHTML = `<button class="icon-btn lightbox__close" type="button">${esc(t(ui.close))} ✕</button><img alt="" draggable="false" /><div class="lightbox__nav"><button class="icon-btn" data-d="-1" type="button" aria-label="Zurück">←</button><span class="mono lb-count" style="align-self:center"></span><button class="icon-btn" data-d="1" type="button" aria-label="Weiter">→</button></div>`;
     document.body.appendChild(lb);
     lb.addEventListener('click', (e) => {
-      if (e.target === lb || e.target.closest('.lightbox__close')) close();
       const d = e.target.closest('[data-d]');
-      if (d) show(lb._i + parseInt(d.dataset.d, 10));
+      if (d) return lbShow(lb._i + parseInt(d.dataset.d, 10));
+      if (e.target === lb || e.target.closest('.lightbox__close')) lbClose();
     });
     window.addEventListener('keydown', (e) => {
       if (!lb.classList.contains('is-open')) return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowRight') show(lb._i + 1);
-      if (e.key === 'ArrowLeft') show(lb._i - 1);
+      if (e.key === 'Escape') lbClose();
+      if (e.key === 'ArrowRight') lbShow(lb._i + 1);
+      if (e.key === 'ArrowLeft') lbShow(lb._i - 1);
+    });
+    // Wischen auf Touch-Geräten
+    let sx = null;
+    lb.addEventListener('touchstart', (e) => (sx = e.touches[0].clientX), { passive: true });
+    lb.addEventListener('touchend', (e) => {
+      if (sx == null) return;
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 50) lbShow(lb._i + (dx < 0 ? 1 : -1));
+      sx = null;
     });
   }
-  const img = lb.querySelector('img');
-  function show(i) {
-    lb._i = (i + list.length) % list.length;
-    gsap.fromTo(img, { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'expo.out' });
-    img.src = list[lb._i];
-    lb.querySelector('.lb-count').textContent = `${lb._i + 1} / ${list.length}`;
-  }
-  function close() {
-    lb.classList.remove('is-open');
-  }
   lb._list = list;
-  show(index);
+  lbShow(index);
   lb.classList.add('is-open');
+  stopScroll();
 }
 
 /* ---------- YouTube (2-Klick) ---------- */

@@ -120,7 +120,7 @@ export const chapters = [
   {
     n: 'IX',
     title: { de: 'Eine Milliarde', en: 'A Billion' },
-    img: M.still.money,
+    img: M.still.willow,
     text: {
       de: 'Bear kauft alle restlichen Willows, kann aber keinen davon zerbrechen. Er beichtet Ian alles und fleht ihn an, den Wunsch rückgängig zu machen. Ian glaubt ihm kein Wort – und wünscht sich sarkastisch eine Milliarde Dollar. Geld regnet von der Decke.',
       en: 'Bear buys every remaining Willow but can\'t break a single one. He confesses everything to Ian and begs him to undo the wish. Ian doesn\'t believe a word – and sarcastically wishes for a billion dollars. Cash rains from the ceiling.',

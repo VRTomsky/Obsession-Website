@@ -82,10 +82,38 @@ Michael_Johnston_in_2026_Century_City.jpg
 Michael_Johnston,_Curry_Barker,_Inde_Navarrette_(1).jpg
 Michael_Johnston,_Curry_Barker,_Inde_Navarrette_(2).jpg
 Obsession_Q&A_2026_Century_City.jpg
-One_Wish_Willow_Toy_Replica_From_Obsession_(2025).jpg""".split("\n")
+One_Wish_Willow_Toy_Replica_From_Obsession_(2025).jpg
+Inde_Navarrette_gaming_2026.jpg
+TIFF-2026-OBSESSION-INDE-NAVARRETTE-01.png
+TIFF-2026-OBSESSION-INDE-NAVARRETTE-01_(cropped).png
+TIFF-2026-OBSESSION-GROUP-01.png
+Obsession_Q&A_2026_Century_City_(cropped).jpg
+Inde_Navarrette_at_the_2025_Toronto_International_Film_Festival_03_(cropped2).jpg""".split("\n")
 
 youtube = ["gMC8kkwbIQQ", "UWVznyWUS-E", "HaZsOipO-xE", "tYQgZc0N0cY", "Sw3QHS8VNhA", "KMVFpeSSZS0", "SWk93t-DEwA",
-           "khIA3Y8Ci3A", "ZpeiXao2MS4", "l4YERhbntis", "JYWMQj-YlEk", "ILEbgnaFHlM", "GlbDPVE78oQ"]
+           "khIA3Y8Ci3A", "ZpeiXao2MS4", "l4YERhbntis", "JYWMQj-YlEk", "ILEbgnaFHlM", "GlbDPVE78oQ",
+           # Interviews mit Inde Navarrette (2026)
+           "pnvlSfoB0Fw", "zEB4C4SIAbY", "T1hlZg2YyjU", "IFUny5cZAdk", "REjonjFoQSs", "tjS5bw27m6A", "3yXORYk-FgM",
+           "UhxcK1arl4o", "D6BNPjy0GgU"]
+
+# Originale Produktbilder (Händler-/Label-Seiten)
+products = {
+    "uhd-a": "https://m.media-amazon.com/images/I/71qpVSRAxsL.jpg",
+    "uhd-b": "https://m.media-amazon.com/images/I/41uZDtIKYCL.jpg",
+    "bd-a": "https://m.media-amazon.com/images/I/71ssaVC5C0L.jpg",
+    "bd-b": "https://m.media-amazon.com/images/I/41HjCLK7OOL.jpg",
+    "dvd-a": "https://m.media-amazon.com/images/I/719bDRXBoZL.jpg",
+    "dvd-b": "https://m.media-amazon.com/images/I/91lNJtjmVxL.jpg",
+    "dvd-c": "https://m.media-amazon.com/images/I/81J5kpqKrZL.jpg",
+    "extra-a": "https://m.media-amazon.com/images/I/71lPJKefQVL.jpg",
+    "extra-b": "https://m.media-amazon.com/images/I/81SVutsUMoL.jpg",
+    "extra-c": "https://m.media-amazon.com/images/I/811kzhbvC2L.jpg",
+    "lp-cover": "https://waxworkrecords.com/cdn/shop/files/Obsession_Cover_1080x.png?v=1778716783",
+    "lp-pack1": "https://waxworkrecords.com/cdn/shop/files/Obsession_packshot-1_1200x.jpg?v=1778786647",
+    "lp-pack2": "https://waxworkrecords.com/cdn/shop/files/Obsession_packshot-2_1200x.jpg?v=1778786647",
+    "lp-pack3": "https://waxworkrecords.com/cdn/shop/files/Obsession_packshot-3_1200x.jpg?v=1778786647",
+    "lp-vinyl": "https://waxworkrecords.com/cdn/shop/files/Obsession_Vinyl_AB_1200x.jpg?v=1778786647",
+}
 
 
 def slug(name):
@@ -117,6 +145,8 @@ for vid in youtube:
                    "quality": 80})
     images.append({"url": f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg", "out": f"public/media/yt/{vid}-hq.webp",
                    "quality": 80})
+for key, url in products.items():
+    images.append({"url": url, "out": f"public/media/products/{key}.webp", "max": 1400, "quality": 86})
 
 IMDB = "https://www.imdb.com/video/"
 # Signierte MP4-Links von IMDb (laufen nach ~24 h ab) – per Firecrawl aus der Videoseite gelesen.
@@ -145,6 +175,11 @@ videos = [
         {"start": 1.0, "duration": 7.5, "out": V + "date", "width": 1280, "crf": 26, "crop": "iw*0.84375:ih:iw*0.078125:0"},
     ]},
 ]
+
+# Die Clips sind fertig geschnitten (Hero ist eine lokale Montage) – nicht erneut erzeugen.
+import sys
+if "--videos" not in sys.argv:
+    videos = []
 
 out = Path(__file__).with_name("manifest.json")
 out.write_text(json.dumps({"images": images, "videos": videos}, indent=1))

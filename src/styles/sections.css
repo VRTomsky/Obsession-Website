@@ -451,6 +451,19 @@
   place-items: center;
   transform-style: preserve-3d;
   touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.ring.is-dragging,
+.ring.is-dragging .ring__item {
+  cursor: grabbing;
+}
+
+.ring__item {
+  cursor: zoom-in;
 }
 
 .ring__spin {

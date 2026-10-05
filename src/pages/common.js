@@ -16,12 +16,10 @@ import '../styles/profile.css';
 
 import { initLayout } from '../core/layout.js';
 import { initScroll } from '../core/scroll.js';
-import { initCursor } from '../core/cursor.js';
 
 export function boot({ footer = true } = {}) {
   initLayout({ footer });
   initScroll();
-  initCursor();
 }
 
 export const fontsReady = () =>

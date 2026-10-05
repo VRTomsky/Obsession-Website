@@ -42,6 +42,7 @@ export function createFeed(cfg) {
     root.appendChild(article);
     count += 1;
 
+    fitName(article);
     initReveals(article);
     initTilt(article);
     initMagnets(article);
@@ -93,9 +94,36 @@ export function createFeed(cfg) {
     return article;
   }
 
+  // Namen nach dem Laden der Schrift und bei Größenänderung neu einpassen
+  document.fonts?.ready.then(() => $$('article.prof', root).forEach(fitName));
+  let rt = 0;
+  window.addEventListener('resize', () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => $$('article.prof', root).forEach(fitName), 150);
+  });
+
   const first = append(0);
   setActive(items[start]);
   return { first };
+}
+
+// Großer Name: Schriftgröße so wählen, dass kein Wort umbricht
+// (Personen: Vorname(n) in Zeile 1, Nachname in Zeile 2)
+const measureCtx = document.createElement('canvas').getContext('2d');
+function fitName(article) {
+  const h = $('.prof__name', article);
+  if (!h) return;
+  h.style.fontSize = '';
+  const cs = getComputedStyle(h);
+  const size = parseFloat(cs.fontSize);
+  const max = h.clientWidth;
+  if (!max) return;
+  measureCtx.font = `${cs.fontWeight} ${size}px ${cs.fontFamily}`;
+  const l2 = $('.l2', h);
+  const text = (h.getAttribute('aria-label') || h.textContent).replace(/\u00AD/g, '');
+  const tokens = l2 ? [text.slice(0, text.length - l2.textContent.length).trim(), l2.textContent] : text.split(/\s+/);
+  const widest = Math.max(...tokens.map((w) => measureCtx.measureText(w.toUpperCase()).width));
+  if (widest > max * 0.97) h.style.fontSize = `${Math.floor((size * max * 0.97) / widest)}px`;
 }
 
 function dragScroll(node) {

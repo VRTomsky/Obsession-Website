@@ -62,7 +62,13 @@
 .prof__name {
   font-size: clamp(72px, 10.5vw, 210px);
   line-height: 0.82;
-  word-break: break-word;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: manual;
+}
+
+.prof__name .split-word {
+  white-space: nowrap;
 }
 
 .prof__name .l2 {
