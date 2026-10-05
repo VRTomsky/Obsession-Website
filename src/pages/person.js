@@ -8,6 +8,7 @@ import { ui } from '../data/site.js';
 import { people } from '../data/people.js';
 import { charBySlug } from '../data/characters.js';
 import { createFeed } from './feed.js';
+import { ytFacade, initYouTube } from '../core/fx.js';
 
 const charLink = (p) => {
   const c = charBySlug[p.character] || (p.character === 'viola' || p.character === 'harry' ? charBySlug['crystal-shop'] : null) || (p.character === 'service' ? charBySlug['customer-service'] : null);
@@ -107,6 +108,15 @@ function render(p, idx, next) {
       </section>
 
       ${
+        p.interviews?.length
+          ? `<section class="prof__block">
+        <div class="kicker">${lang === 'de' ? 'Interviews' : 'Interviews'} · ${p.interviews.length}</div>
+        <div class="interviews">${p.interviews.map((v) => ytFacade(v)).join('')}</div>
+      </section>`
+          : ''
+      }
+
+      ${
         p.upcoming?.length
           ? `<section class="prof__block">
         <div class="kicker">${esc(t(ui.upcoming))}</div>
@@ -157,6 +167,7 @@ function render(p, idx, next) {
 }
 
 boot({ footer: true });
+initYouTube(document.getElementById('app'));
 
 createFeed({
   items: people,

@@ -16,6 +16,10 @@ export const people = [
   {
     slug: 'michael-johnston',
     name: 'Michael Johnston',
+    interviews: [
+      { id: 'UhxcK1arl4o', by: 'SciFiNow', len: '4:45', title: { de: 'Mit Inde Navarrette: Peinliche Liebesfilme und Horror-Kindheit', en: 'With Inde Navarrette: cringey romances and a horror childhood' } },
+      { id: 'D6BNPjy0GgU', by: 'Austin Ashburn', len: '8:56', title: { de: 'Mit Inde Navarrette und Curry Barker', en: 'With Inde Navarrette and Curry Barker' } },
+    ],
     role: { de: 'Baron „Bear" Bailey', en: 'Baron "Bear" Bailey' },
     character: 'bear',
     born: '1996-02-22',
@@ -65,6 +69,16 @@ export const people = [
   {
     slug: 'inde-navarrette',
     name: 'Inde Navarrette',
+    interviews: [
+      { id: 'pnvlSfoB0Fw', by: 'Variety', len: '32:41', title: { de: 'Variety „Up Next": Ruhm, X-Men und Oscar-Gerüchte', en: 'Variety "Up Next": fame, X-Men and Oscar buzz' } },
+      { id: 'IFUny5cZAdk', by: 'Jimmy Kimmel Live', len: '8:57', title: { de: 'Bei Jimmy Kimmel: Mit blonder Perücke ins eigene Kino', en: 'On Jimmy Kimmel: sneaking into her own movie in a blonde wig' } },
+      { id: 'zEB4C4SIAbY', by: 'Collider Ladies Night', len: '29:40', title: { de: 'Collider Ladies Night: Nikkis Gefühlswelt und das alternative Ende', en: 'Collider Ladies Night: Nikki\'s inner life and the alternate ending' } },
+      { id: 'T1hlZg2YyjU', by: 'Gold Derby', len: '37:21', title: { de: 'Gold Derby: Oscar-Träume und was nach dem Abspann mit Nikki passiert', en: 'Gold Derby: Oscar dreams and what happens to Nikki after the credits' } },
+      { id: '3yXORYk-FgM', by: 'TIFF 2026', len: '40:14', title: { de: 'TIFF – ein Jahr später: Q&A mit Curry Barker', en: 'TIFF one year later: Q&A with Curry Barker' } },
+      { id: 'tjS5bw27m6A', by: 'Focus Features × Rotten Tomatoes', len: '6:07', title: { de: '„Women in Focus": Die Schauspielerinnen, die sie inspirieren', en: '"Women in Focus": the actresses who inspire her' } },
+      { id: 'REjonjFoQSs', by: 'LA-Premiere', len: '1:01', title: { de: 'Roter Teppich: Warum Nikki schlaflose Nächte bereiten soll', en: 'Red carpet: why Nikki should cost you sleep' } },
+      { id: 'UhxcK1arl4o', by: 'SciFiNow', len: '4:45', title: { de: 'Mit Michael Johnston: Peinliche Liebesfilme und Horror-Kindheit', en: 'With Michael Johnston: cringey romances and a horror childhood' } },
+    ],
     fullName: 'Danielle Fabiola Navarrette',
     role: { de: 'Nikki Freeman („Freaky Nikki")', en: 'Nikki Freeman ("Freaky Nikki")' },
     character: 'nikki',
@@ -320,6 +334,10 @@ export const people = [
   {
     slug: 'curry-barker',
     name: 'Curry Barker',
+    interviews: [
+      { id: '3yXORYk-FgM', by: 'TIFF 2026', len: '40:14', title: { de: 'TIFF – ein Jahr später: Q&A mit Inde Navarrette', en: 'TIFF one year later: Q&A with Inde Navarrette' } },
+      { id: 'D6BNPjy0GgU', by: 'Austin Ashburn', len: '8:56', title: { de: 'Mit Inde Navarrette und Michael Johnston', en: 'With Inde Navarrette and Michael Johnston' } },
+    ],
     role: { de: 'Regie, Drehbuch, Schnitt · Stimme des Kundenservice', en: 'Director, writer, editor · voice of customer service' },
     character: 'service',
     director: true,
