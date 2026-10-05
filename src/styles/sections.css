@@ -2724,8 +2724,22 @@
     min-height: auto;
     opacity: 1;
   }
+  /* Handy/Tablet hoch: Bild steht über seinem Kapitel, klar getrennt vom nächsten */
+  .chapter {
+    padding: 36px 0 48px;
+    gap: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .chapter:first-child {
+    border-top: 0;
+  }
   .chapter__mobile {
     display: block;
+    order: -1;
+    margin: 0 0 8px;
+  }
+  .chapter__mobile img {
+    object-position: 50% 30%;
   }
   .castnext,
   .stream__grid,
