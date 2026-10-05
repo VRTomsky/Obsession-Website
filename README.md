@@ -11,7 +11,7 @@ Desktop-first, Deutsch als Standardsprache, per Knopfdruck auf Englisch umschalt
 | Bereich | Was passiert |
 | --- | --- |
 | **Hero** | Filmclip als WebGL-Shader: Maus-Linse, chromatische Aberration wie im Logo, Gedrückthalten = Zeitlupe + Glitch. Beim Scrollen wird das Bild unscharf und dunkel, das Logo fliegt in die Navigation. |
-| **Der Film** | Prämisse, Eckdaten, Credits, Handlung in zehn Kapiteln mit Sticky-Bildern, Themen, 3D-Galerie-Ring, Trailer & Clips (YouTube erst nach Klick). |
+| **Der Film** | Prämisse, Eckdaten, Credits, Handlung in zehn Kapiteln mit Sticky-Bildern, Themen, selbst drehender 3D-Galerie-Ring (ziehen / wischen, Klick vergrößert), Trailer & Clips (YouTube erst nach Klick). |
 | **Cast & Crew** | Hauptrollen, Freundeskreis, Regisseur. Klick öffnet das Profil im selben Tab mit Übergangsanimation; Weiterscrollen lädt automatisch die nächste Person. |
 | **Profile** | Fotos, Geburtstag, Alter, Geburtsort/Land, Filmografie mit IMDb-Links, kommende Projekte, was „Obsession“ für die Person verändert hat. |
 | **Figuren** | Bear, Nikki, Freaky Nikki, Ian, Sarah, Carter, Viola & Harry, Kundenservice, Sandy, One Wish Willow – Motive, Beziehungen, Schicksal, Interpretation. |
@@ -20,9 +20,9 @@ Desktop-first, Deutsch als Standardsprache, per Knopfdruck auf Englisch umschalt
 | **Hinter den Kulissen** | Produktion, Drehorte (Karte erst nach Klick), alternatives Ende, Musik, Trivia-Karten. |
 | **Fans, Theorien, Zukunft** | Kritiken und Auszeichnungen, Fankultur, Theorien mit Wahrscheinlichkeit, Barkers nächste Filme mit Countdown, Projekte des Casts. |
 | **Quiz** | Wissensquiz und „Welche Figur bist du?“. |
-| **Ansehen** | Streaming DE/USA, 4K/Blu-ray/DVD/Vinyl, Kino-Finder in deiner Nähe, alle Termine. |
+| **Ansehen** | Streaming DE/USA, 4K/Blu-ray/DVD/Vinyl mit Original-Covern, Kino-Finder in deiner Nähe, alle Termine. |
 
-Extras: Preloader, Filmkorn, eigener Cursor, weiches Scrollen, synthetischer Sound (aus, bis man ihn einschaltet), Vollbild-Menü.
+Extras: Preloader, Filmkorn, weiches Scrollen, synthetischer Sound (aus, bis man ihn einschaltet), Vollbild-Menü.
 
 ## Datenschutz
 
@@ -41,7 +41,7 @@ Extras: Preloader, Filmkorn, eigener Cursor, weiches Scrollen, synthetischer Sou
 
 ```
 src/
-  core/       Grundbausteine (i18n, Scrollen, Layout/Navigation, Cursor, Sound, Effekte, Karten)
+  core/       Grundbausteine (i18n, Scrollen, Layout/Navigation, Sound, Effekte, Karten)
   three/      WebGL: Hero-Shader, One Wish Willow
   sections/   Abschnitte der Startseite
   pages/      Einstiegspunkte (Startseite, Personen, Figuren, Endlos-Feed)
@@ -72,3 +72,8 @@ Adresse: `https://vrtomsky.github.io/Obsession-Website/`
 Alle Texte liegen in `src/data/*.js` als `{ de: '…', en: '…' }`. Bilder und Clips sind in `src/data/media.js` zugeordnet.
 Neue Medien: Eintrag in `tools/assets/build_manifest.py`, dann `python3 tools/assets/build_manifest.py` – der Workflow
 „Fetch media assets“ lädt sie herunter und committet sie.
+
+## Geräte
+
+Desktop-first, mit eigenen Layouts für iPad (hoch und quer) und Smartphones: einspaltige Raster, senkrechte Zeitleiste,
+wischbare Galerie, Personenleiste unten statt rechts. Getestet bei 1600×900, 1180×820, 820×1180 und 390×844.
