@@ -195,14 +195,21 @@ export function initPhenomenon() {
     gsap.from(f, { scaleX: 0, transformOrigin: 'left', duration: 1.6, ease: 'expo.out', scrollTrigger: { trigger: f, start: 'top 92%' } });
   });
 
-  // Zeitleiste horizontal
-  const track = $('.tline__track');
-  const dist = () => track.scrollWidth - window.innerWidth + 80;
-  const tw = gsap.to(track, {
-    x: () => -dist(),
-    ease: 'none',
-    scrollTrigger: { trigger: '.tline', start: 'top top', end: () => `+=${dist()}`, pin: '.tline__pin', scrub: 0.8, invalidateOnRefresh: true },
+  // Zeitleiste: am Desktop horizontal gepinnt, auf Tablet-Hochformat und Handy senkrecht
+  const mm = gsap.matchMedia();
+  mm.add('(min-width: 861px)', () => {
+    const track = $('.tline__track');
+    const dist = () => track.scrollWidth - window.innerWidth + 80;
+    const tw = gsap.to(track, {
+      x: () => -dist(),
+      ease: 'none',
+      scrollTrigger: { trigger: '.tline', start: 'top top', end: () => `+=${dist()}`, pin: '.tline__pin', scrub: 0.8, invalidateOnRefresh: true },
+    });
+    gsap.fromTo('.tline__rail', { scaleX: 0 }, { scaleX: 1, ease: 'none', transformOrigin: 'left', scrollTrigger: { trigger: '.tline', start: 'top top', end: () => `+=${dist()}`, scrub: 0.8, invalidateOnRefresh: true } });
+    $$('.tl').forEach((n) => gsap.from(n, { opacity: 0.15, y: 40, duration: 0.8, scrollTrigger: { trigger: n, containerAnimation: tw, start: 'left 85%' } }));
   });
-  gsap.fromTo('.tline__rail', { scaleX: 0 }, { scaleX: 1, ease: 'none', transformOrigin: 'left', scrollTrigger: { trigger: '.tline', start: 'top top', end: () => `+=${dist()}`, scrub: 0.8, invalidateOnRefresh: true } });
-  $$('.tl').forEach((n) => gsap.from(n, { opacity: 0.15, y: 40, duration: 0.8, scrollTrigger: { trigger: n, containerAnimation: tw, start: 'left 85%' } }));
+  mm.add('(max-width: 860px)', () => {
+    gsap.fromTo('.tline__rail', { scaleY: 0 }, { scaleY: 1, ease: 'none', transformOrigin: 'top', scrollTrigger: { trigger: '.tline__track', start: 'top 70%', end: 'bottom 70%', scrub: true } });
+    $$('.tl').forEach((n) => gsap.from(n, { opacity: 0, x: 30, duration: 0.8, ease: 'expo.out', scrollTrigger: { trigger: n, start: 'top 88%' } }));
+  });
 }

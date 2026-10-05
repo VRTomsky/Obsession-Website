@@ -1,6 +1,8 @@
 // „Der Film": Einleitung, Eckdaten, Handlung in Kapiteln (Sticky-Bilder), Themen, 3D-Galerie, Videos.
 import { gsap, ScrollTrigger } from '../core/scroll.js';
 import { $, $$, esc, reducedMotion } from '../core/dom.js';
+
+const touchUI = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
 import { t, lang } from '../core/i18n.js';
 import { M, gallery } from '../data/media.js';
 import { sections } from '../data/site.js';
@@ -97,7 +99,11 @@ export function filmHTML() {
           ${gallery.map((g, i) => `<button class="ring__item" style="--i:${i}" data-g="${i}" aria-label="Bild ${i + 1}"><img src="${g}" alt="" loading="lazy" draggable="false" /></button>`).join('')}
         </div>
       </div>
-      <p class="ring-sec__hint mono">${lang === 'de' ? 'Mit gedrückter Maus ziehen · Klick vergrößert' : 'Click and drag to spin · click to enlarge'}</p>
+      <p class="ring-sec__hint mono">${
+        touchUI()
+          ? lang === 'de' ? 'Wischen zum Drehen · Tippen vergrößert' : 'Swipe to spin · tap to enlarge'
+          : lang === 'de' ? 'Mit gedrückter Maus ziehen · Klick vergrößert' : 'Click and drag to spin · click to enlarge'
+      }</p>
     </div>
   </section>
 
@@ -154,7 +160,7 @@ export function initFilm() {
   window.addEventListener('resize', layout);
   gsap.fromTo('.ring', { scale: 0.75, rotateX: 16 }, { scale: 1, rotateX: 5, ease: 'none', scrollTrigger: { trigger: '.ring-sec', start: 'top bottom', end: 'center center', scrub: true } });
 
-  const auto = reducedMotion() ? 0 : -0.06; // Grad pro Frame (~60 fps)
+  const auto = reducedMotion() ? 0 : -0.1; // Grad pro Frame (~60 fps)
   let angle = 0;
   let vel = auto;
   let down = false;
@@ -165,6 +171,23 @@ export function initFilm() {
   let visible = false;
   new IntersectionObserver((es) => (visible = es[es.length - 1].isIntersecting)).observe(ring);
 
+  // Welches Bild liegt unter dem Zeiger? (3D-Hit-Testing ist unzuverlässig, daher selbst berechnen:
+  // unter allen Bildern, deren Fläche den Punkt enthält, gewinnt das, das am weitesten nach vorn zeigt)
+  const itemAt = (x, y) => {
+    let best = null;
+    let bestFacing = 0.2;
+    items.forEach((it, i) => {
+      const facing = Math.cos((((i * 360) / n + angle) * Math.PI) / 180);
+      if (facing <= bestFacing) return;
+      const r = it.getBoundingClientRect();
+      if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) {
+        best = it;
+        bestFacing = facing;
+      }
+    });
+    return best;
+  };
+
   ring.addEventListener('pointerdown', (e) => {
     if (e.button !== 0) return;
     e.preventDefault(); // keine Text-/Bildauswahl beim Ziehen
@@ -172,12 +195,15 @@ export function initFilm() {
     moved = 0;
     lastX = e.clientX;
     lastT = performance.now();
-    downItem = e.target.closest('.ring__item');
+    downItem = itemAt(e.clientX, e.clientY);
     ring.classList.add('is-dragging');
     ring.setPointerCapture(e.pointerId);
   });
   ring.addEventListener('pointermove', (e) => {
-    if (!down) return;
+    if (!down) {
+      if (e.pointerType === 'mouse') ring.classList.toggle('is-over-item', !!itemAt(e.clientX, e.clientY));
+      return;
+    }
     const dx = e.clientX - lastX;
     const now = performance.now();
     moved += Math.abs(dx);

@@ -406,6 +406,8 @@
 
 /* ---------- 3D-RING-GALERIE ---------- */
 .ring-sec {
+  --rw: clamp(220px, 24vw, 380px);
+  --rh: calc(var(--rw) * 0.64);
   position: relative;
   background: radial-gradient(ellipse at 50% 60%, #1a0a0e 0%, var(--bg) 60%);
 }
@@ -444,9 +446,10 @@
 }
 
 .ring {
-  perspective: 1500px;
+  perspective: 2600px;
   width: 100%;
-  height: 70vh;
+  height: 62vh;
+  margin-top: 12vh;
   display: grid;
   place-items: center;
   transform-style: preserve-3d;
@@ -463,13 +466,17 @@
 }
 
 .ring__item {
+  pointer-events: none;
+}
+
+.ring.is-over-item {
   cursor: zoom-in;
 }
 
 .ring__spin {
   position: relative;
-  width: 280px;
-  height: 180px;
+  width: var(--rw);
+  height: var(--rh);
   transform-style: preserve-3d;
   --r: 1200px;
 }
@@ -477,8 +484,8 @@
 .ring__item {
   position: absolute;
   inset: 0;
-  width: 280px;
-  height: 180px;
+  width: var(--rw);
+  height: var(--rh);
   backface-visibility: hidden;
   overflow: hidden;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
@@ -2286,6 +2293,12 @@
   perspective: 1200px;
 }
 
+.discs {
+  overflow-x: clip;
+  overflow-y: visible;
+  padding-top: 20px;
+}
+
 .case {
   position: relative;
   width: 74%;
@@ -2298,7 +2311,34 @@
 
 .case--uhd,
 .case--bd {
-  aspect-ratio: 148 / 171;
+  aspect-ratio: 1400 / 1791;
+}
+
+.case--dvd {
+  aspect-ratio: 1400 / 1968;
+}
+
+.case--bd .case__spine {
+  background: #1556c2;
+}
+
+.case--lp::before {
+  /* Schallplatte, die aus der Hülle schaut */
+  content: '';
+  position: absolute;
+  top: 3%;
+  right: -18%;
+  width: 94%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f2f2f2 0 3%, #c4101f 3.5% 17%, #7d0712 17.5% 19%, #b00d1c 19.5% 100%);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transform: translateZ(-4px);
+  transition: right 1s var(--ease-out);
+}
+
+.disc:hover .case--lp::before {
+  right: -30%;
 }
 
 .case--lp {
@@ -2681,5 +2721,62 @@
   .wchart__ch,
   .wchart__lbl {
     font-size: 8.5px;
+  }
+}
+
+/* Zeitleiste senkrecht auf schmalen Bildschirmen */
+@media (max-width: 860px) {
+  .tline__pin {
+    height: auto;
+    padding: clamp(60px, 12vw, 100px) 0;
+    overflow: visible;
+  }
+  .tline__head {
+    margin-bottom: 30px;
+  }
+  .tline__track {
+    width: auto;
+    flex-direction: column;
+    gap: 34px;
+    padding: 0 var(--gutter) 0 calc(var(--gutter) + 30px);
+  }
+  .tline__rail {
+    top: 0;
+    bottom: 0;
+    left: calc(var(--gutter) + 5px);
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+  .tl {
+    width: auto;
+  }
+  .tl__dot {
+    top: 6px;
+    left: -30px;
+  }
+}
+
+/* Galerie auf Tablet/Handy: größere Bilder, weniger Leerraum */
+@media (max-width: 1100px) {
+  .ring-sec {
+    --rw: clamp(200px, 46vw, 420px);
+  }
+  .ring-sec__pin {
+    height: 78vh;
+  }
+  .ring {
+    margin-top: 10vh;
+    height: 50vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .ring-sec {
+    --rw: 64vw;
+  }
+  .ring-sec__pin {
+    height: 66vh;
+    min-height: 480px;
   }
 }

@@ -132,18 +132,24 @@ function dragScroll(node) {
   let sl = 0;
   let moved = 0;
   node.addEventListener('pointerdown', (e) => {
-    if (e.pointerType !== 'mouse') return;
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    e.preventDefault(); // keine Auswahl / kein Bild-Ziehen
     down = true;
     moved = 0;
     sx = e.clientX;
     sl = node.scrollLeft;
+    node.style.scrollSnapType = 'none';
   });
   window.addEventListener('pointermove', (e) => {
     if (!down) return;
     moved = Math.abs(e.clientX - sx);
     node.scrollLeft = sl - (e.clientX - sx);
   });
-  window.addEventListener('pointerup', () => (down = false));
+  window.addEventListener('pointerup', () => {
+    if (!down) return;
+    down = false;
+    node.style.scrollSnapType = '';
+  });
   node.addEventListener(
     'click',
     (e) => {

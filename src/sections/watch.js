@@ -7,7 +7,8 @@ import { M } from '../data/media.js';
 
 export function watchHTML() {
   const s = sections.ansehen;
-  const covers = [M.poster.main, M.poster.blood, M.poster.eyeClose, M.poster.oneWish];
+  // Originale Produktbilder (Amazon.de / Waxwork Records)
+  const covers = [M.product.uhd, M.product.bd, M.product.dvd, M.product.lp];
   return `
   <section class="section watch" id="ansehen">
     <div class="wrap">
@@ -44,7 +45,7 @@ export function watchHTML() {
             (p, i) => `
           <a class="disc ${p.best ? 'is-best' : ''}" href="${p.url}" target="_blank" rel="noopener" data-cursor="${lang === 'de' ? 'Ansehen' : 'View'}">
             <div class="case case--${p.fmt === '4K UHD' ? 'uhd' : p.fmt === 'LP' ? 'lp' : p.fmt === 'DVD' ? 'dvd' : 'bd'}">
-              <div class="case__front"><span class="case__band">${esc(p.fmt)}</span><img src="${covers[i]}" alt="" loading="lazy" /></div>
+              <div class="case__front"><img src="${covers[i]}" alt="${esc(t(p.title))} – Cover" loading="lazy" /></div>
               <div class="case__spine"><span>OBSESSION</span></div>
               <div class="case__back"></div>
             </div>

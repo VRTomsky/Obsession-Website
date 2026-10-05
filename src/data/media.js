@@ -81,6 +81,13 @@ export const M = {
     sarahParty: st('sarah-party'),
     sarahPartyWide: st('sarah-party-wide'),
   },
+  product: {
+    uhd: './media/products/uhd-a.webp',
+    bd: './media/products/bd-a.webp',
+    dvd: './media/products/dvd-a.webp',
+    lp: './media/products/lp-cover.webp',
+    lpVinyl: './media/products/lp-vinyl.webp',
+  },
   poster: {
     main: po(1),
     eye: po(2),
@@ -125,11 +132,13 @@ export const peopleImg = {
     stills: [M.still.wish, M.still.storeCouple, M.still.bedShock, M.still.finale, M.still.happy],
   },
   'inde-navarrette': {
-    portrait: pp('inde-navarrette', 4),
-    photos: [pp('inde-navarrette', 4), pp('inde-navarrette', 2), pp('inde-navarrette', 9), pp('inde-navarrette', 6),
-      cm('inde-navarrette-tiff25-03.webp'), cm('inde-navarrette-tiff25-02-cropped.webp'), cm('inde-navarrette-2026-century-city.webp'),
-      pp('inde-navarrette', 12)],
-    stills: [M.still.nikkiSmile, M.still.watching, M.still.bloodGrin, M.still.scream, M.still.flowers, M.still.date],
+    portrait: cm('tiff-2026-obsession-inde-navarrette-01-cropped.webp'),
+    photos: [cm('tiff-2026-obsession-inde-navarrette-01-cropped.webp'), pp('inde-navarrette', 8), pp('inde-navarrette', 10),
+      cm('inde-navarrette-obsession-q-a-2026-century-city.webp'), pp('inde-navarrette', 11), cm('tiff-2026-obsession-inde-navarrette-01.webp'),
+      pp('inde-navarrette', 9), cm('inde-navarrette-2026-century-city.webp'), cm('tiff-2026-obsession-group-01.webp'), pp('inde-navarrette', 1),
+      cm('inde-navarrette-in-2026.webp'), pp('inde-navarrette', 2), cm('obsession-q-a-2026-century-city-cropped.webp'),
+      cm('inde-navarrette-tiff25-03-cropped2.webp')],
+    stills: [M.still.nikkiSmile, M.still.watching, M.still.bloodGrin, M.still.scream, M.still.flowers, M.still.date, M.still.nikkiSmile2, M.still.bloodShock],
   },
   'cooper-tomlinson': {
     portrait: pp('cooper-tomlinson', 1),

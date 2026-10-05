@@ -222,6 +222,8 @@
   scrollbar-width: thin;
   scrollbar-color: var(--dim) transparent;
   cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .strip:active {

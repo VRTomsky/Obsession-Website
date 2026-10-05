@@ -1191,56 +1191,14 @@
    "quality": 86
   },
   {
-   "url": "https://m.media-amazon.com/images/I/41uZDtIKYCL.jpg",
-   "out": "public/media/products/uhd-b.webp",
-   "max": 1400,
-   "quality": 86
-  },
-  {
    "url": "https://m.media-amazon.com/images/I/71ssaVC5C0L.jpg",
    "out": "public/media/products/bd-a.webp",
    "max": 1400,
    "quality": 86
   },
   {
-   "url": "https://m.media-amazon.com/images/I/41HjCLK7OOL.jpg",
-   "out": "public/media/products/bd-b.webp",
-   "max": 1400,
-   "quality": 86
-  },
-  {
    "url": "https://m.media-amazon.com/images/I/719bDRXBoZL.jpg",
    "out": "public/media/products/dvd-a.webp",
-   "max": 1400,
-   "quality": 86
-  },
-  {
-   "url": "https://m.media-amazon.com/images/I/91lNJtjmVxL.jpg",
-   "out": "public/media/products/dvd-b.webp",
-   "max": 1400,
-   "quality": 86
-  },
-  {
-   "url": "https://m.media-amazon.com/images/I/81J5kpqKrZL.jpg",
-   "out": "public/media/products/dvd-c.webp",
-   "max": 1400,
-   "quality": 86
-  },
-  {
-   "url": "https://m.media-amazon.com/images/I/71lPJKefQVL.jpg",
-   "out": "public/media/products/extra-a.webp",
-   "max": 1400,
-   "quality": 86
-  },
-  {
-   "url": "https://m.media-amazon.com/images/I/81SVutsUMoL.jpg",
-   "out": "public/media/products/extra-b.webp",
-   "max": 1400,
-   "quality": 86
-  },
-  {
-   "url": "https://m.media-amazon.com/images/I/811kzhbvC2L.jpg",
-   "out": "public/media/products/extra-c.webp",
    "max": 1400,
    "quality": 86
   },

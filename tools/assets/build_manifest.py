@@ -99,15 +99,8 @@ youtube = ["gMC8kkwbIQQ", "UWVznyWUS-E", "HaZsOipO-xE", "tYQgZc0N0cY", "Sw3QHS8V
 # Originale Produktbilder (Händler-/Label-Seiten)
 products = {
     "uhd-a": "https://m.media-amazon.com/images/I/71qpVSRAxsL.jpg",
-    "uhd-b": "https://m.media-amazon.com/images/I/41uZDtIKYCL.jpg",
     "bd-a": "https://m.media-amazon.com/images/I/71ssaVC5C0L.jpg",
-    "bd-b": "https://m.media-amazon.com/images/I/41HjCLK7OOL.jpg",
     "dvd-a": "https://m.media-amazon.com/images/I/719bDRXBoZL.jpg",
-    "dvd-b": "https://m.media-amazon.com/images/I/91lNJtjmVxL.jpg",
-    "dvd-c": "https://m.media-amazon.com/images/I/81J5kpqKrZL.jpg",
-    "extra-a": "https://m.media-amazon.com/images/I/71lPJKefQVL.jpg",
-    "extra-b": "https://m.media-amazon.com/images/I/81SVutsUMoL.jpg",
-    "extra-c": "https://m.media-amazon.com/images/I/811kzhbvC2L.jpg",
     "lp-cover": "https://waxworkrecords.com/cdn/shop/files/Obsession_Cover_1080x.png?v=1778716783",
     "lp-pack1": "https://waxworkrecords.com/cdn/shop/files/Obsession_packshot-1_1200x.jpg?v=1778786647",
     "lp-pack2": "https://waxworkrecords.com/cdn/shop/files/Obsession_packshot-2_1200x.jpg?v=1778786647",
