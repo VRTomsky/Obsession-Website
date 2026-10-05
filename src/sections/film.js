@@ -160,7 +160,15 @@ export function initFilm() {
   window.addEventListener('resize', layout);
   gsap.fromTo('.ring', { scale: 0.75, rotateX: 16 }, { scale: 1, rotateX: 5, ease: 'none', scrollTrigger: { trigger: '.ring-sec', start: 'top bottom', end: 'center center', scrub: true } });
 
-  const auto = reducedMotion() ? 0 : -0.1; // Grad pro Frame (~60 fps)
+  // Eigenrotation: vorne laufen die Bilder mit ca. 40 px/s vorbei – unabhängig von Bildschirm und Ringgröße
+  const PX_PER_SEC = 40;
+  let auto = 0;
+  const calcAuto = () => {
+    const r = parseFloat(spin.style.getPropertyValue('--r')) || 1200;
+    auto = reducedMotion() ? 0 : -((PX_PER_SEC / r) * (180 / Math.PI)) / 60; // Grad pro Frame (60 fps)
+  };
+  calcAuto();
+  window.addEventListener('resize', calcAuto);
   let angle = 0;
   let vel = auto;
   let down = false;

@@ -29,7 +29,6 @@ export function heroHTML() {
       <div class="hero__bottom">
         <span class="mono hero__meta">${t(ui.heroMeta)}</span>
         <span class="hero__scroll mono"><i></i>${t(ui.scroll)}</span>
-        <span class="mono hero__hint">${lang === 'de' ? 'Maus bewegen · gedrückt halten' : 'Move mouse · press & hold'}</span>
       </div>
     </div>
   </section>`;

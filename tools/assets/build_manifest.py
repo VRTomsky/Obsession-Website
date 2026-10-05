@@ -96,11 +96,9 @@ youtube = ["gMC8kkwbIQQ", "UWVznyWUS-E", "HaZsOipO-xE", "tYQgZc0N0cY", "Sw3QHS8V
            "pnvlSfoB0Fw", "zEB4C4SIAbY", "T1hlZg2YyjU", "IFUny5cZAdk", "REjonjFoQSs", "tjS5bw27m6A", "3yXORYk-FgM",
            "UhxcK1arl4o", "D6BNPjy0GgU"]
 
-# Originale Produktbilder (Händler-/Label-Seiten)
+# Originale Produktbilder (Händler-/Label-Seiten). 4K/Blu-ray/DVD wurden einmalig von Amazon.de geladen und
+# freigestellt (public/media/products/uhd|bd|dvd.webp) – nicht erneut laden, sonst kommen die weißen Ränder zurück.
 products = {
-    "uhd-a": "https://m.media-amazon.com/images/I/71qpVSRAxsL.jpg",
-    "bd-a": "https://m.media-amazon.com/images/I/71ssaVC5C0L.jpg",
-    "dvd-a": "https://m.media-amazon.com/images/I/719bDRXBoZL.jpg",
     "lp-cover": "https://waxworkrecords.com/cdn/shop/files/Obsession_Cover_1080x.png?v=1778716783",
     "lp-pack1": "https://waxworkrecords.com/cdn/shop/files/Obsession_packshot-1_1200x.jpg?v=1778786647",
     "lp-pack2": "https://waxworkrecords.com/cdn/shop/files/Obsession_packshot-2_1200x.jpg?v=1778786647",

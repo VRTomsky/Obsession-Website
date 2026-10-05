@@ -82,9 +82,9 @@ export const M = {
     sarahPartyWide: st('sarah-party-wide'),
   },
   product: {
-    uhd: './media/products/uhd-a.webp',
-    bd: './media/products/bd-a.webp',
-    dvd: './media/products/dvd-a.webp',
+    uhd: './media/products/uhd.webp',
+    bd: './media/products/bd.webp',
+    dvd: './media/products/dvd.webp',
     lp: './media/products/lp-cover.webp',
     lpVinyl: './media/products/lp-vinyl.webp',
   },

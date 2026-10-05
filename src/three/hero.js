@@ -1,4 +1,4 @@
-// Interaktives Hero-Video: WebGL-Shader mit Maus-Linse, chromatischer Aberration (wie im Filmlogo),
+// Interaktives Hero-Video: WebGL-Shader mit chromatischer Aberration (wie im Filmlogo),
 // Filmkorn und scroll-gesteuerter Unschärfe/Abdunklung.
 import * as THREE from 'three';
 
@@ -46,18 +46,11 @@ void main() {
   float band = step(0.985 - uGlitch * 0.12, hash(vec2(floor(uv.y * 60.0), floor(uTime * 18.0))));
   uv.x += band * (hash(vec2(uTime, uv.y)) - 0.5) * 0.08 * uGlitch;
 
-  // Linse um die Maus
-  vec2 d = uv - uMouse;
-  d.x *= uRes.x / uRes.y;
-  float dist = length(d);
-  float lens = smoothstep(0.42, 0.0, dist);
-  uv -= normalize(d + 1e-5) * lens * (0.01 + uVel * 0.05);
-
-  // leichtes Atmen
-  uv.x += sin(uv.y * 16.0 + uTime * 1.3) * 0.0012 * (1.0 + uVel * 8.0 + uGlitch * 6.0);
-
+  // Kein Verzerren des Bildes (keine Linse, kein Wabern) – nur eine feine chromatische Aberration zu den Rändern hin,
+  // die beim Bewegen der Maus kurz etwas stärker wird.
   vec2 dir = vUv - 0.5;
-  float ca = 0.0022 + uVel * 0.022 + uProgress * 0.008 + lens * 0.005 + uGlitch * 0.02;
+  float edge = smoothstep(0.25, 0.75, length(dir));
+  float ca = (0.0012 + uVel * 0.006) * edge + uProgress * 0.006 + uGlitch * 0.02;
 
   vec3 col;
   float br = uProgress * 0.014;

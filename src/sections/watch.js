@@ -77,8 +77,8 @@ export function watchHTML() {
           </div>
           <p class="mono muted cinema__privacy">${
             lang === 'de'
-              ? 'Datenschutz: Dein Standort wird nur nach deiner Zustimmung im Browser abgefragt, auf ca. 1 km gerundet und nur an OpenStreetMap (Overpass/Nominatim) gesendet, um Kinos zu finden. Nichts wird gespeichert.'
-              : 'Privacy: your location is only requested in the browser after your consent, rounded to about 1 km and only sent to OpenStreetMap (Overpass/Nominatim) to find cinemas. Nothing is stored.'
+              ? 'Datenschutz: Dein Standort wird nur nach deiner Zustimmung im Browser abgefragt, auf ca. 1 km gerundet und nur an OpenStreetMap (Overpass/Nominatim) gesendet, um Kinos zu finden. Die Karte lädt danach Kacheln von Esri. Nichts wird gespeichert.'
+              : 'Privacy: your location is only requested in the browser after your consent, rounded to about 1 km and only sent to OpenStreetMap (Overpass/Nominatim) to find cinemas. The map then loads tiles from Esri. Nothing is stored.'
           }</p>
           <p class="cinema__status mono" aria-live="polite"></p>
           <ul class="cinema__list"></ul>

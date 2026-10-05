@@ -22,13 +22,14 @@ Desktop-first, Deutsch als Standardsprache, per Knopfdruck auf Englisch umschalt
 | **Quiz** | Wissensquiz und „Welche Figur bist du?“. |
 | **Ansehen** | Streaming DE/USA, 4K/Blu-ray/DVD/Vinyl mit Original-Covern, Kino-Finder in deiner Nähe, alle Termine. |
 
-Extras: Preloader, Filmkorn, weiches Scrollen, synthetischer Sound (aus, bis man ihn einschaltet), Vollbild-Menü.
+Extras: Preloader, Filmkorn, weiches Scrollen, offizieller Soundtrack per Klick auf „Ton", Vollbild-Menü.
 
 ## Datenschutz
 
 - Keine Cookies, kein Tracking, Schriften lokal eingebunden.
 - Standort für den Kino-Finder nur nach Klick und Browser-Freigabe, auf ca. 1 km gerundet, nur an OpenStreetMap (Overpass/Nominatim) gesendet.
-- Karten (OpenStreetMap, ohne API-Schlüssel) und YouTube-Videos laden erst nach ausdrücklichem Klick.
+- Karten (Esri-Satellitenbilder bzw. dunkle Karte, ohne API-Schlüssel) und YouTube-Videos laden erst nach ausdrücklichem Klick.
+- „Ton" spielt den offiziellen Soundtrack („Love Is in the Air, Pt. 1 & 2" von Rock Burwell) über den YouTube-Player des Labels – YouTube wird erst mit diesem Klick geladen.
 - Keine Privatadressen – Drehorte nur als ungefähre Lage.
 
 ## Technik

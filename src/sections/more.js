@@ -63,8 +63,8 @@ export function fansHTML() {
 export function initFans() {
   const track = $('.quotes__track');
   let x = 0;
-  gsap.ticker.add(() => {
-    x -= 0.5;
+  gsap.ticker.add((time, dtMs) => {
+    x -= (36 * Math.min(dtMs, 100)) / 1000;
     const w = track.scrollWidth / 2;
     if (-x >= w) x += w;
     track.style.transform = `translate3d(${x}px,0,0)`;

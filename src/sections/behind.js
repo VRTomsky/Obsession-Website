@@ -129,10 +129,11 @@ export function initBehind() {
         .addTo(map)
         .bindPopup(`<b>${esc(t(l.name))}</b><br>${esc(l.place)}`),
     );
+    map.fitBounds(L.featureGroup(markers).getBounds().pad(0.25));
     $$('.locs__list li').forEach((li) =>
       li.addEventListener('mouseenter', () => {
         const m = markers[li.dataset.loc];
-        map.flyTo(m.getLatLng(), 13, { duration: 0.8 });
+        map.flyTo(m.getLatLng(), 14, { duration: 0.8 });
         m.openPopup();
       }),
     );

@@ -261,23 +261,23 @@ export function marquee(items, cls = '') {
 }
 
 export function initMarquees(root = document) {
+  // Gleichmäßiges Tempo (Pixel pro Sekunde), unabhängig von Bildrate und Scrollen
+  const SPEED = 70;
   $$('.marquee', root).forEach((m) => {
     if (m.dataset.done) return;
     m.dataset.done = '1';
     const track = m.querySelector('.marquee__track');
+    const dir = m.classList.contains('marquee--rev') ? 1 : -1;
     let x = 0;
-    let speed = m.classList.contains('marquee--rev') ? 0.6 : -0.6;
-    let boost = 0;
-    let last = window.scrollY;
-    gsap.ticker.add(() => {
-      const y = window.scrollY;
-      boost = boost * 0.92 + (y - last) * 0.08;
-      last = y;
+    let visible = false;
+    new IntersectionObserver((es) => (visible = es[es.length - 1].isIntersecting)).observe(m);
+    gsap.ticker.add((time, dtMs) => {
+      if (!visible || reducedMotion()) return;
       const w = track.scrollWidth / 4;
-      x += speed - Math.abs(boost) * 0.35 * Math.sign(speed || -1) * -1;
+      x += dir * SPEED * Math.min(dtMs, 100) / 1000;
       if (x <= -w) x += w;
       if (x > 0) x -= w;
-      track.style.transform = `translate3d(${x}px,0,0) skewX(${gsap.utils.clamp(-10, 10, boost * 0.4)}deg)`;
+      track.style.transform = `translate3d(${x}px,0,0)`;
     });
   });
 }

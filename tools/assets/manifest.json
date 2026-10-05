@@ -1185,24 +1185,6 @@
    "quality": 80
   },
   {
-   "url": "https://m.media-amazon.com/images/I/71qpVSRAxsL.jpg",
-   "out": "public/media/products/uhd-a.webp",
-   "max": 1400,
-   "quality": 86
-  },
-  {
-   "url": "https://m.media-amazon.com/images/I/71ssaVC5C0L.jpg",
-   "out": "public/media/products/bd-a.webp",
-   "max": 1400,
-   "quality": 86
-  },
-  {
-   "url": "https://m.media-amazon.com/images/I/719bDRXBoZL.jpg",
-   "out": "public/media/products/dvd-a.webp",
-   "max": 1400,
-   "quality": 86
-  },
-  {
    "url": "https://waxworkrecords.com/cdn/shop/files/Obsession_Cover_1080x.png?v=1778716783",
    "out": "public/media/products/lp-cover.webp",
    "max": 1400,

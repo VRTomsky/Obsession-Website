@@ -1,14 +1,38 @@
-// Leaflet-Karte (OpenStreetMap-Kacheln, per CSS abgedunkelt, kein API-Schlüssel nötig) – wird nur nach Einwilligung geladen.
+// Leaflet-Karte mit Esri-Kacheln (frei nutzbar, kein API-Schlüssel nötig) – wird nur nach Einwilligung geladen.
+// Standard: Satellitenbild mit Straßen- und Ortsnamen; umschaltbar auf eine dunkle Straßenkarte.
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { lang } from './i18n.js';
+
+const ESRI = 'https://server.arcgisonline.com/ArcGIS/rest/services';
+const tiles = (path, opts = {}) => L.tileLayer(`${ESRI}/${path}/MapServer/tile/{z}/{y}/{x}`, { maxZoom: 19, maxNativeZoom: 19, ...opts });
 
 export async function makeMap(id, center, zoom) {
-  const map = L.map(id, { zoomControl: true, scrollWheelZoom: false, attributionControl: true }).setView(center, zoom);
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>-Mitwirkende',
-    maxZoom: 19,
-    className: 'map-tiles-dark',
-  }).addTo(map);
+  const el = document.getElementById(id);
+  // Mausrad soll die Karte zoomen und nicht die Seite (Lenis) scrollen
+  el.setAttribute('data-lenis-prevent', '');
+
+  const satellite = L.layerGroup([
+    tiles('World_Imagery', { attribution: 'Bilder &copy; Esri, Vantor, Earthstar Geographics' }),
+    tiles('Reference/World_Transportation', { opacity: 0.75 }),
+    tiles('Reference/World_Boundaries_and_Places'),
+  ]);
+  const dark = L.layerGroup([
+    tiles('Canvas/World_Dark_Gray_Base', { maxNativeZoom: 16, attribution: '&copy; Esri, HERE, Garmin, &copy; OpenStreetMap-Mitwirkende' }),
+    tiles('Canvas/World_Dark_Gray_Reference', { maxNativeZoom: 16 }),
+  ]);
+
+  const map = L.map(el, {
+    zoomControl: true,
+    scrollWheelZoom: true,
+    wheelPxPerZoomLevel: 90,
+    attributionControl: true,
+    layers: [satellite],
+  }).setView(center, zoom);
+
+  const de = lang === 'de';
+  L.control.layers({ [de ? 'Satellit' : 'Satellite']: satellite, [de ? 'Karte' : 'Map']: dark }, null, { position: 'topright', collapsed: false }).addTo(map);
+
   setTimeout(() => map.invalidateSize(), 100);
   return map;
 }

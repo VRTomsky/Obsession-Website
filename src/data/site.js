@@ -30,7 +30,7 @@ export const menu = [
 export const ui = {
   menu: { de: 'Menü', en: 'Menu' },
   close: { de: 'Schließen', en: 'Close' },
-  sound: { de: 'Ton', en: 'Sound' },
+  sound: { de: 'Ton: offizieller Soundtrack „Love Is in the Air" (lädt YouTube)', en: 'Sound: official soundtrack "Love Is in the Air" (loads YouTube)' },
   soundOn: { de: 'Ton an', en: 'Sound on' },
   soundOff: { de: 'Ton aus', en: 'Sound off' },
   scroll: { de: 'Scrollen', en: 'Scroll' },
@@ -81,7 +81,7 @@ export const ui = {
   ytConsentText: { de: 'Beim Abspielen werden Daten an YouTube (Google) übertragen. Erst nach deinem Klick wird eine Verbindung aufgebaut.', en: 'Playing sends data to YouTube (Google). A connection is only made after you click.' },
   ytConsentBtn: { de: 'Video laden', en: 'Load video' },
   mapConsentBtn: { de: 'Karte laden', en: 'Load map' },
-  mapConsentText: { de: 'Die Karte lädt Kacheln von OpenStreetMap. Erst nach deinem Klick wird eine Verbindung aufgebaut.', en: 'The map loads tiles from OpenStreetMap. A connection is only made after you click.' },
+  mapConsentText: { de: 'Die Karte lädt Satellitenbilder und Kartenkacheln von Esri (ArcGIS). Erst nach deinem Klick wird eine Verbindung aufgebaut.', en: 'The map loads satellite imagery and map tiles from Esri (ArcGIS). A connection is only made after you click.' },
   copyright: { de: 'Alle Rechte an Film, Bildern, Logo und Trailer liegen bei den jeweiligen Rechteinhabern (Focus Features, Universal Pictures, Blumhouse, Tea Shop Productions, Capstone Studios). Diese Seite ist ein nicht-kommerzielles Fanprojekt und steht in keiner Verbindung zu ihnen.', en: 'All rights to the film, images, logo and trailer belong to their respective owners (Focus Features, Universal Pictures, Blumhouse, Tea Shop Productions, Capstone Studios). This site is a non-commercial fan project and is not affiliated with them.' },
 };
 
