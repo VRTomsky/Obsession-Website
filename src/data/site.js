@@ -86,7 +86,7 @@ export const ui = {
 };
 
 export const sections = {
-  film: { n: '01', kicker: { de: 'Der Film', en: 'The Film' }, title: { de: 'Ein Wunsch. Eine Freundin. Eine Obsession.', en: 'One wish. One friend. One obsession.' } },
+  film: { n: '01', kicker: { de: 'Der Film', en: 'The Film' }, title: { de: 'Liebe auf Bestellung.', en: 'Love, made to order.' } },
   story: { kicker: { de: 'Die Handlung', en: 'The Story' }, title: { de: 'Zehn Kapitel bis zum Ende', en: 'Ten chapters to the end' } },
   themes: { kicker: { de: 'Worum es wirklich geht', en: 'What it\'s really about' } },
   videos: { kicker: { de: 'Trailer & Clips', en: 'Trailers & clips' } },

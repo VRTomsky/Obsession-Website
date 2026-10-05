@@ -56,7 +56,7 @@ export function phenomenonHTML() {
             <div class="wchart__col ${i > 0 && i < 3 ? 'is-up' : ''}">
               <span class="wchart__val mono">${fmtMoney(w.g, { compact: true })}</span>
               <span class="wchart__bar" style="--h:${(w.g / maxW) * 100}%"></span>
-              <span class="wchart__ch mono ${ch > 0 ? 'up' : ''}">${ch === null ? (lang === 'de' ? 'Start' : 'Open') : `${ch > 0 ? '+' : ''}${ch}%`}</span>
+              <span class="wchart__ch mono ${ch > 0 ? 'is-pos' : ''}">${ch === null ? (lang === 'de' ? 'Start' : 'Open') : `${ch > 0 ? '+' : ''}${ch}%`}</span>
               <span class="wchart__lbl mono">${lang === 'de' ? 'WE' : 'WK'} ${w.w}</span>
             </div>`;
             })

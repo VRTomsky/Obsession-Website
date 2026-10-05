@@ -82,6 +82,7 @@ export async function initWillow() {
   w.onBroken(() => {
     snapSound();
     sec.classList.add('is-broken');
+    $('.willow__stage', sec).dataset.cursor = lang === 'de' ? 'Drehen' : 'Spin';
     gsap.to(holdUi, { opacity: 0, duration: 0.4 });
     gsap.fromTo(sec, { '--flash': 1 }, { '--flash': 0, duration: 1.2, ease: 'expo.out' });
     input.disabled = false;
@@ -113,6 +114,7 @@ export async function initWillow() {
   again.addEventListener('click', () => {
     w.reset();
     sec.classList.remove('is-broken');
+    $('.willow__stage', sec).dataset.cursor = lang === 'de' ? 'Halten' : 'Hold';
     gsap.to(holdUi, { opacity: 1, duration: 0.4 });
     answer.textContent = '';
     input.value = '';

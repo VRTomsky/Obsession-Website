@@ -73,9 +73,9 @@ void main() {
     col /= 12.0;
   }
 
-  // Farbstimmung: leicht rötlich, tiefe Schwarztöne
-  col = mix(col, col * vec3(1.1, 0.9, 0.92), 0.4);
-  col = pow(col, vec3(1.06));
+  // Belichtung anheben (Nachtszene) + Farbstimmung: leicht rötlich
+  col = pow(col * 1.45 + 0.01, vec3(0.92));
+  col = mix(col, col * vec3(1.1, 0.9, 0.92), 0.35);
 
   float vig = smoothstep(1.25, 0.2, length((vUv - 0.5) * vec2(1.25, 1.0)) * 1.55);
   col *= mix(0.45, 1.05, vig);
@@ -149,11 +149,12 @@ export function createHeroGL(container, video) {
   const io = new IntersectionObserver(([en]) => (visible = en.isIntersecting));
   io.observe(container);
 
-  const clock = new THREE.Clock();
+  const timer = new THREE.Timer();
   const loop = () => {
     raf = requestAnimationFrame(loop);
     if (!visible) return;
-    const dt = Math.min(clock.getDelta(), 0.05);
+    timer.update();
+    const dt = Math.min(timer.getDelta(), 0.05);
     const px = cur.x;
     const py = cur.y;
     cur.x += (target.x - cur.x) * 0.08;
@@ -164,6 +165,7 @@ export function createHeroGL(container, video) {
     uniforms.uVel.value = vel;
     uniforms.uTime.value += dt;
     uniforms.uGlitch.value += (glitchTarget - uniforms.uGlitch.value) * 0.12;
+    if (video.readyState >= 2) tex.needsUpdate = true;
     renderer.render(scene, camera);
   };
   loop();

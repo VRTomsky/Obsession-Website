@@ -401,11 +401,22 @@ ol {
   color: var(--red-hot);
 }
 
-/* SplitText-Masken */
-.split-line {
-  overflow: hidden;
-  padding-bottom: 0.04em;
-  margin-bottom: -0.04em;
+[hidden] {
+  display: none !important;
+}
+
+/* SplitText-Masken: etwas Luft nach oben/unten, damit Umlaute und Unterlängen nicht abgeschnitten werden */
+.split-line-inner-mask,
+.split-char-mask {
+  padding: 0.16em 0 0.08em;
+  margin: -0.16em 0 -0.08em;
+}
+
+.split-char-mask {
+  padding-left: 0.02em;
+  padding-right: 0.02em;
+  margin-left: -0.02em;
+  margin-right: -0.02em;
 }
 
 [data-reveal] {

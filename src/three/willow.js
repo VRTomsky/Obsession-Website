@@ -328,13 +328,16 @@ export async function createWillow(container) {
     cbs.broken();
   }
 
-  const clock = new THREE.Clock();
+  const timer = new THREE.Timer();
   let raf = 0;
   const loop = () => {
     raf = requestAnimationFrame(loop);
     if (!visible) return;
-    const dt = Math.min(clock.getDelta(), 0.05);
-    const time = clock.elapsedTime;
+    timer.update();
+    const raw = timer.getDelta();
+    const dt = Math.min(raw, 0.05);
+    const hdt = Math.min(raw, 0.25); // Halten in echter Zeit, auch bei wenig FPS
+    const time = timer.getElapsed();
 
     if (!dragging) {
       velY += (0.0035 - velY) * 0.02;
@@ -346,7 +349,7 @@ export async function createWillow(container) {
     rotX = Math.max(-0.9, Math.min(0.9, rotX));
 
     if (holding && !broken) {
-      hold = Math.min(1, hold + dt / 1.4);
+      hold = Math.min(1, hold + hdt / 1.4);
       if (hold >= 1) doBreak();
     } else if (!broken) {
       hold = Math.max(0, hold - dt * 1.6);

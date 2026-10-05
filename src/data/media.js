@@ -18,6 +18,9 @@ export const M = {
     hero: './media/video/hero',
     nikki: './media/video/nikki',
     date: './media/video/date',
+    house: './media/video/house',
+    party: './media/video/party',
+    willow: './media/video/willow',
   },
   still: {
     willow: st('15baaheTOxyJvnzFw8Xv8otes5g'),

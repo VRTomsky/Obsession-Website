@@ -232,7 +232,7 @@ function switchLang(next) {
   if (next === lang) return;
   setLang(next);
   try {
-    sessionStorage.setItem('obsession-scroll', String(window.scrollY));
+    sessionStorage.setItem('obsession-scroll', JSON.stringify({ u: location.pathname + location.search, y: window.scrollY }));
   } catch {
     /* egal */
   }
@@ -272,13 +272,17 @@ function initNavState() {
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((en) => {
-          if (en.isIntersecting) links.forEach((l) => l.classList.toggle('is-active', l.dataset.link === en.target.id));
+          if (!en.isIntersecting) return;
+          const id = group[en.target.id] ?? en.target.id;
+          links.forEach((l) => l.classList.toggle('is-active', l.dataset.link === id));
         });
       },
       { rootMargin: '-45% 0px -50% 0px' },
     );
-    nav.forEach((n) => {
-      const s = document.getElementById(n.id);
+    // Abschnitte ohne eigenen Menüpunkt einem Punkt zuordnen (oder keinen markieren)
+    const group = { top: '', handlung: 'film', trailer: 'film', willow: '', fans: '', theorien: 'zukunft', quiz: '' };
+    [...nav.map((n) => n.id), ...Object.keys(group)].forEach((id) => {
+      const s = document.getElementById(id);
       if (s) obs.observe(s);
     });
   }
@@ -306,10 +310,12 @@ export function initLayout({ footer = true } = {}) {
 
 export function restoreScroll() {
   try {
-    const y = sessionStorage.getItem('obsession-scroll');
-    if (y) {
+    const raw = sessionStorage.getItem('obsession-scroll');
+    if (raw) {
       sessionStorage.removeItem('obsession-scroll');
-      return parseFloat(y);
+      const { u, y } = JSON.parse(raw);
+      // nur auf derselben Seite wiederherstellen (z. B. nach dem Sprachwechsel)
+      if (u === location.pathname + location.search) return y;
     }
   } catch {
     /* egal */

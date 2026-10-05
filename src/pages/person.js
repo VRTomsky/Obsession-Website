@@ -3,7 +3,7 @@ import { boot, fontsReady } from './common.js';
 import { ScrollTrigger, lenis } from '../core/scroll.js';
 import { esc, imdbTitle, imdbName } from '../core/dom.js';
 import { t, lang, fmtDate, ageFrom } from '../core/i18n.js';
-import { enterPage } from '../core/layout.js';
+import { enterPage, restoreScroll } from '../core/layout.js';
 import { ui } from '../data/site.js';
 import { people } from '../data/people.js';
 import { charBySlug } from '../data/characters.js';
@@ -172,6 +172,8 @@ createFeed({
   lenis?.stop();
   await fontsReady();
   ScrollTrigger.refresh();
+  const y = restoreScroll();
+  if (y != null) window.scrollTo(0, y);
   await enterPage();
   lenis?.start();
   try {

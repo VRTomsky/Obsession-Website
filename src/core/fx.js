@@ -30,7 +30,7 @@ export function initReveals(root = document) {
     if (node.dataset.done) return;
     node.dataset.done = '1';
     if (rm) return;
-    const split = SplitText.create(node, { type: 'chars', mask: 'chars' });
+    const split = SplitText.create(node, { type: 'chars', mask: 'chars', charsClass: 'split-char' });
     gsap.from(split.chars, {
       yPercent: 115,
       rotate: 6,

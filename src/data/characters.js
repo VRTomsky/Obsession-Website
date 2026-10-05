@@ -229,7 +229,7 @@ export const characters = [
   },
   {
     slug: 'customer-service',
-    name: { de: 'Der Kundenservice', en: 'Customer Service' },
+    name: { de: 'Der Kunden\u00ADservice', en: 'Customer Service' },
     full: { de: 'Die Stimme der One-Wish-Willow-Hotline', en: 'The voice of the One Wish Willow hotline' },
     actor: 'curry-barker',
     hero: M.still.phone,

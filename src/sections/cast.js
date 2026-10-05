@@ -80,7 +80,7 @@ export function charactersHTML() {
             <div class="ccard__media"><img src="${c.hero}" alt="" loading="lazy" /></div>
             <span class="ccard__n mono">${String(i + 1).padStart(2, '0')}</span>
             <div class="ccard__body">
-              <h3 class="ccard__name display">${esc(t(c.name))}</h3>
+              <h3 class="ccard__name display${t(c.name).split(' ').some((w) => w.length > 9) ? ' is-long' : ''}">${esc(t(c.name))}</h3>
               <p class="ccard__tag serif-i">${esc(t(c.tagline))}</p>
               <p class="mono ccard__actor">${actor ? `${esc(t(ui.playedBy))} ${esc(actor.name)}` : '—'}</p>
             </div>
@@ -118,7 +118,10 @@ export function initCharacters() {
   cards.forEach((c) => {
     const img = c.querySelector('img');
     gsap.fromTo(img, { xPercent: -12 }, { xPercent: 12, ease: 'none', scrollTrigger: { trigger: c, containerAnimation: tween, start: 'left right', end: 'right left', scrub: true } });
-    gsap.from(c.querySelector('.ccard__name'), { yPercent: 60, opacity: 0, duration: 1, ease: 'expo.out', scrollTrigger: { trigger: c, containerAnimation: tween, start: 'left 80%' } });
+    // Karten, die schon beim Einrasten sichtbar sind, starten mit dem vertikalen Scrollen
+    const inView = c.getBoundingClientRect().left < window.innerWidth * 0.8;
+    const st = inView ? { trigger: '.chars', start: 'top 55%' } : { trigger: c, containerAnimation: tween, start: 'left 80%' };
+    gsap.from(c.querySelector('.ccard__name'), { yPercent: 60, opacity: 0, duration: 1, ease: 'expo.out', delay: inView ? (c.style.getPropertyValue('--d') | 0) * 0.08 : 0, scrollTrigger: st });
   });
 }
 

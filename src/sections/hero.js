@@ -42,6 +42,7 @@ export function initHero() {
   const glBox = $('.hero__gl', section);
   const gl = createHeroGL(glBox, video);
   if (gl) section.classList.add('has-gl');
+  window.__heroGL = gl;
 
   const play = () => video.play().catch(() => {});
   play();
