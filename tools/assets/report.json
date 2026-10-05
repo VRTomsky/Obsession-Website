@@ -1,6 +1,273 @@
 {
   "images": {
-    "ok": [],
+    "ok": [
+      {
+        "out": "public/media/commons/inde-navarrette-gaming-2026.webp",
+        "size": [
+          280,
+          311
+        ]
+      },
+      {
+        "out": "public/media/commons/tiff-2026-obsession-inde-navarrette-01.webp",
+        "size": [
+          1600,
+          2899
+        ]
+      },
+      {
+        "out": "public/media/commons/tiff-2026-obsession-inde-navarrette-01-cropped.webp",
+        "size": [
+          1600,
+          2264
+        ]
+      },
+      {
+        "out": "public/media/commons/tiff-2026-obsession-group-01.webp",
+        "size": [
+          1600,
+          1067
+        ]
+      },
+      {
+        "out": "public/media/commons/obsession-q-a-2026-century-city-cropped.webp",
+        "size": [
+          1600,
+          1073
+        ]
+      },
+      {
+        "out": "public/media/commons/inde-navarrette-tiff25-03-cropped2.webp",
+        "size": [
+          1600,
+          1985
+        ]
+      },
+      {
+        "out": "public/media/yt/pnvlSfoB0Fw.webp",
+        "size": [
+          1280,
+          720
+        ]
+      },
+      {
+        "out": "public/media/yt/pnvlSfoB0Fw-hq.webp",
+        "size": [
+          480,
+          360
+        ]
+      },
+      {
+        "out": "public/media/yt/zEB4C4SIAbY.webp",
+        "size": [
+          1280,
+          720
+        ]
+      },
+      {
+        "out": "public/media/yt/zEB4C4SIAbY-hq.webp",
+        "size": [
+          480,
+          360
+        ]
+      },
+      {
+        "out": "public/media/yt/T1hlZg2YyjU-hq.webp",
+        "size": [
+          480,
+          360
+        ]
+      },
+      {
+        "out": "public/media/yt/IFUny5cZAdk.webp",
+        "size": [
+          1280,
+          720
+        ]
+      },
+      {
+        "out": "public/media/yt/IFUny5cZAdk-hq.webp",
+        "size": [
+          480,
+          360
+        ]
+      },
+      {
+        "out": "public/media/yt/REjonjFoQSs.webp",
+        "size": [
+          1280,
+          720
+        ]
+      },
+      {
+        "out": "public/media/yt/REjonjFoQSs-hq.webp",
+        "size": [
+          480,
+          360
+        ]
+      },
+      {
+        "out": "public/media/yt/tjS5bw27m6A.webp",
+        "size": [
+          1280,
+          720
+        ]
+      },
+      {
+        "out": "public/media/yt/tjS5bw27m6A-hq.webp",
+        "size": [
+          480,
+          360
+        ]
+      },
+      {
+        "out": "public/media/yt/3yXORYk-FgM.webp",
+        "size": [
+          1280,
+          720
+        ]
+      },
+      {
+        "out": "public/media/yt/3yXORYk-FgM-hq.webp",
+        "size": [
+          480,
+          360
+        ]
+      },
+      {
+        "out": "public/media/yt/UhxcK1arl4o.webp",
+        "size": [
+          1280,
+          720
+        ]
+      },
+      {
+        "out": "public/media/yt/UhxcK1arl4o-hq.webp",
+        "size": [
+          480,
+          360
+        ]
+      },
+      {
+        "out": "public/media/yt/D6BNPjy0GgU.webp",
+        "size": [
+          1280,
+          720
+        ]
+      },
+      {
+        "out": "public/media/yt/D6BNPjy0GgU-hq.webp",
+        "size": [
+          480,
+          360
+        ]
+      },
+      {
+        "out": "public/media/products/uhd-a.webp",
+        "size": [
+          1400,
+          1791
+        ]
+      },
+      {
+        "out": "public/media/products/uhd-b.webp",
+        "size": [
+          391,
+          500
+        ]
+      },
+      {
+        "out": "public/media/products/bd-a.webp",
+        "size": [
+          1400,
+          1791
+        ]
+      },
+      {
+        "out": "public/media/products/bd-b.webp",
+        "size": [
+          391,
+          500
+        ]
+      },
+      {
+        "out": "public/media/products/dvd-a.webp",
+        "size": [
+          1400,
+          1968
+        ]
+      },
+      {
+        "out": "public/media/products/dvd-b.webp",
+        "size": [
+          1400,
+          1986
+        ]
+      },
+      {
+        "out": "public/media/products/dvd-c.webp",
+        "size": [
+          1337,
+          1879
+        ]
+      },
+      {
+        "out": "public/media/products/extra-a.webp",
+        "size": [
+          1400,
+          1324
+        ]
+      },
+      {
+        "out": "public/media/products/extra-b.webp",
+        "size": [
+          1400,
+          1780
+        ]
+      },
+      {
+        "out": "public/media/products/extra-c.webp",
+        "size": [
+          1400,
+          1787
+        ]
+      },
+      {
+        "out": "public/media/products/lp-cover.webp",
+        "size": [
+          1080,
+          1080
+        ]
+      },
+      {
+        "out": "public/media/products/lp-pack1.webp",
+        "size": [
+          1200,
+          1200
+        ]
+      },
+      {
+        "out": "public/media/products/lp-pack2.webp",
+        "size": [
+          1200,
+          1500
+        ]
+      },
+      {
+        "out": "public/media/products/lp-pack3.webp",
+        "size": [
+          1200,
+          1200
+        ]
+      },
+      {
+        "out": "public/media/products/lp-vinyl.webp",
+        "size": [
+          1200,
+          1500
+        ]
+      }
+    ],
     "skipped": [
       "public/media/logo/en-01.png",
       "public/media/logo/en-02.png",
@@ -204,129 +471,13 @@
         "out": "public/media/yt/ZpeiXao2MS4.webp",
         "url": "https://i.ytimg.com/vi/ZpeiXao2MS4/maxresdefault.jpg",
         "error": "404 Client Error: Not Found for url: https://i.ytimg.com/vi/ZpeiXao2MS4/maxresdefault.jpg"
+      },
+      {
+        "out": "public/media/yt/T1hlZg2YyjU.webp",
+        "url": "https://i.ytimg.com/vi/T1hlZg2YyjU/maxresdefault.jpg",
+        "error": "404 Client Error: Not Found for url: https://i.ytimg.com/vi/T1hlZg2YyjU/maxresdefault.jpg"
       }
     ]
   },
-  "videos": {
-    "trailer": {
-      "source": "https://imdb-video.media-imdb.com/mc/vi2176961305/vi2176961305_1080p.mp4",
-      "probe": {
-        "programs": [],
-        "streams": [
-          {
-            "width": 1920,
-            "height": 1080
-          },
-          {}
-        ],
-        "format": {
-          "duration": "133.341542"
-        }
-      },
-      "clips": {
-        "public/media/video/hero": {
-          "mp4": true,
-          "webm": true,
-          "poster": true,
-          ".mp4": 580531,
-          ".webm": 237739,
-          ".jpg": 86169
-        },
-        "public/media/video/willow": {
-          "mp4": true,
-          "webm": true,
-          "poster": true,
-          ".mp4": 166841,
-          ".webm": 95417,
-          ".jpg": 18899
-        },
-        "public/media/video/party": {
-          "mp4": true,
-          "webm": true,
-          "poster": true,
-          ".mp4": 300067,
-          ".webm": 269080,
-          ".jpg": 68839
-        }
-      }
-    },
-    "teaser": {
-      "source": "https://imdb-video.media-imdb.com/mc/vi3051539225/vi3051539225_1080p.mp4",
-      "probe": {
-        "programs": [],
-        "streams": [
-          {
-            "width": 1920,
-            "height": 1080
-          },
-          {}
-        ],
-        "format": {
-          "duration": "46.713333"
-        }
-      },
-      "clips": {
-        "public/media/video/house": {
-          "mp4": true,
-          "webm": true,
-          "poster": true,
-          ".mp4": 65473,
-          ".webm": 32946,
-          ".jpg": 36157
-        }
-      }
-    },
-    "freaky-nikki": {
-      "source": "https://imdb-video.media-imdb.com/mc/vi688900889/vi688900889_1080p.mp4",
-      "probe": {
-        "programs": [],
-        "streams": [
-          {
-            "width": 1920,
-            "height": 1080
-          },
-          {}
-        ],
-        "format": {
-          "duration": "41.458083"
-        }
-      },
-      "clips": {
-        "public/media/video/nikki": {
-          "mp4": true,
-          "webm": true,
-          "poster": true,
-          ".mp4": 170632,
-          ".webm": 55477,
-          ".jpg": 21860
-        }
-      }
-    },
-    "nice-date": {
-      "source": "https://imdb-video.media-imdb.com/mc/vi118475545/vi118475545_1080p.mp4",
-      "probe": {
-        "programs": [],
-        "streams": [
-          {
-            "width": 1920,
-            "height": 1080
-          },
-          {}
-        ],
-        "format": {
-          "duration": "75.241833"
-        }
-      },
-      "clips": {
-        "public/media/video/date": {
-          "mp4": true,
-          "webm": true,
-          "poster": true,
-          ".mp4": 196569,
-          ".webm": 118485,
-          ".jpg": 38118
-        }
-      }
-    }
-  }
+  "videos": {}
 }
