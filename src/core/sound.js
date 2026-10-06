@@ -132,6 +132,18 @@ function rewind(d) {
   else d.seek = LEAD;
 }
 
+function unlock(d) {
+  const el = d.el;
+  if (!el.paused) return;
+  el.muted = true;
+  el.play()
+    .then(() => {
+      el.pause();
+      el.muted = false;
+    })
+    .catch(() => (el.muted = false));
+}
+
 function build() {
   decks = [makeDeck(), makeDeck()];
   const pos = restore();
@@ -140,14 +152,7 @@ function build() {
   prepare(decks[0], idx, Math.max(LEAD, pos.t));
   prepare(decks[1], (idx + 1) % TRACKS.length);
   // Zweites Deck innerhalb des Klicks einmal kurz „entsperren" (iOS erlaubt play() sonst nur nach Nutzeraktion)
-  const b = decks[1].el;
-  b.muted = true;
-  b.play()
-    .then(() => {
-      b.pause();
-      b.muted = false;
-    })
-    .catch(() => (b.muted = false));
+  unlock(decks[1]);
   if (mode === 'element') {
     const probe = decks[0].el;
     probe.volume = 0.5;
@@ -235,16 +240,50 @@ function finishCrossfade(out) {
 }
 
 /* ---------- Ein / Aus ---------- */
-function play() {
+function play(fadeIn = FADE_IN) {
   clearTimeout(stopTimer);
   if (!decks.length) init();
-  if (ctx && ctx.state !== 'running') ctx.resume();
+  if (ctx && ctx.state !== 'running') ctx.resume().catch(() => {});
   const d = decks[cur];
   if (!crossing) setDeck(d, 1);
-  d.el.play().catch(() => {});
+  d.el.play().catch((e) => e?.name === 'NotAllowedError' && armResume());
   if (crossing) decks[1 - cur].el.play().catch(() => {});
   if (mode === 'element' && !volumeWorks) return;
-  setMaster(VOLUME, FADE_IN);
+  setMaster(VOLUME, fadeIn);
+}
+
+// Browser erlauben Ton nach einem Seitenwechsel nicht immer sofort (v. a. Safari/iOS).
+// Dann bleibt „Ton an" stehen und die Musik startet beim ersten Tippen/Klicken irgendwo auf der Seite.
+let armed = false;
+let swallowUntil = 0;
+const RESUME_EVENTS = ['pointerdown', 'pointerup', 'mousedown', 'touchend', 'keydown'];
+function onFirstGesture(e) {
+  disarm();
+  if (!on) return;
+  // war der erste Klick auf „Ton", soll er die Musik starten – nicht gleich wieder ausschalten
+  if (e.target?.closest?.('#sound-btn')) swallowUntil = performance.now() + 1500;
+  setMaster(0, 0);
+  play(0.8);
+  if (decks.length) unlock(decks[1 - cur]);
+}
+function armResume() {
+  if (armed) return;
+  armed = true;
+  document.documentElement.classList.add('is-sound-pending');
+  RESUME_EVENTS.forEach((t) => window.addEventListener(t, onFirstGesture, { capture: true }));
+}
+function disarm() {
+  if (!armed) return;
+  armed = false;
+  document.documentElement.classList.remove('is-sound-pending');
+  RESUME_EVENTS.forEach((t) => window.removeEventListener(t, onFirstGesture, { capture: true }));
+}
+function checkBlocked() {
+  setTimeout(() => {
+    if (!on || !decks.length) return;
+    const blocked = decks[cur].el.paused || (mode === 'graph' && ctx.state !== 'running');
+    if (blocked) armResume();
+  }, 600);
 }
 
 function pauseAll() {
@@ -255,6 +294,7 @@ function pauseAll() {
 }
 
 function stop() {
+  disarm();
   if (!decks.length) return;
   clearTimeout(stopTimer);
   if (mode === 'element' && !volumeWorks) {
@@ -295,12 +335,58 @@ export function onSoundChange(fn) {
   listeners.add(fn);
 }
 
-export function toggleSound(force) {
-  const next = typeof force === 'boolean' ? force : !on;
-  if (next === on) return;
-  on = next;
-  if (on) play();
-  else stop();
+/** Beim Laden einer Seite: lief der Ton vorher, an derselben Stelle weiterspielen. */
+export function restoreSound() {
+  let want = false;
+  try {
+    want = sessionStorage.getItem('obsession-sound') === '1';
+  } catch {
+    /* egal */
+  }
+  if (!want) return;
+  setOn(true);
+  play(0.8);
+  checkBlocked();
+}
+
+// Zurück/Vor aus dem Browser-Cache: Stand der anderen Seite übernehmen (Position, an/aus)
+window.addEventListener('pageshow', (e) => {
+  if (!e.persisted) return;
+  let want = false;
+  try {
+    want = sessionStorage.getItem('obsession-sound') === '1';
+  } catch {
+    /* egal */
+  }
+  if (decks.length) {
+    decks.forEach((d) => {
+      d.el.pause();
+      d.el.removeAttribute('src');
+    });
+    decks = [];
+    crossing = false;
+    clearTimeout(xfTimer);
+  }
+  if (want) {
+    setOn(true);
+    play(0.8);
+    checkBlocked();
+  } else if (on) setOn(false);
+});
+
+/** Vor einem Seitenwechsel: Musik läuft während der Übergangsanimation weiter und klingt erst am Ende kurz aus. */
+export function soundLeave(totalSeconds) {
+  if (!on || !decks.length) return;
+  const fade = 0.35;
+  setTimeout(() => {
+    if (!on) return;
+    setMaster(0, fade);
+    setTimeout(pauseAll, fade * 1000); // pausieren + Position merken; die neue Seite macht genau hier weiter
+  }, Math.max(0, totalSeconds - fade) * 1000);
+}
+
+function setOn(v) {
+  on = v;
   try {
     sessionStorage.setItem('obsession-sound', on ? '1' : '0');
   } catch {
@@ -308,6 +394,18 @@ export function toggleSound(force) {
   }
   document.documentElement.classList.toggle('is-sound', on);
   listeners.forEach((fn) => fn(on));
+}
+
+export function toggleSound(force) {
+  if (typeof force !== 'boolean' && performance.now() < swallowUntil) {
+    swallowUntil = 0;
+    return;
+  }
+  const next = typeof force === 'boolean' ? force : !on;
+  if (next === on) return;
+  setOn(next);
+  if (on) play();
+  else stop();
 }
 
 /** Kurzer „Knack"-Effekt (z. B. beim Zerbrechen des Willows) – nur, wenn der Ton an ist. */

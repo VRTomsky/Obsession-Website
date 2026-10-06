@@ -4,7 +4,7 @@ import { lang, t, setLang } from './i18n.js';
 import { $, $$, esc } from './dom.js';
 import { M } from '../data/media.js';
 import { nav, menu, ui, sources } from '../data/site.js';
-import { toggleSound, onSoundChange } from './sound.js';
+import { toggleSound, onSoundChange, restoreSound, soundLeave } from './sound.js';
 import { scrollTo, stopScroll, startScroll } from './scroll.js';
 
 const isIndex = () => document.body.dataset.page === 'index';
@@ -134,11 +134,12 @@ export function leaveTo(url, title = '') {
   const ttl = $('.curtain__title');
   ttl.textContent = title;
   cur.style.pointerEvents = 'auto';
-  gsap
+  const tl = gsap
     .timeline({ onComplete: () => (window.location.href = url) })
     .set(cols, { transformOrigin: 'bottom' })
     .to(cols, { scaleY: 1, duration: 0.7, ease: 'expo.inOut', stagger: 0.06 })
     .to(ttl, { opacity: 1, duration: 0.35 }, '-=0.25');
+  soundLeave(tl.duration());
   try {
     sessionStorage.setItem('obsession-internal', '1');
   } catch {
@@ -298,14 +299,7 @@ export function initLayout({ footer = true } = {}) {
   initLangButtons();
   initSoundButton();
   initNavState();
-  try {
-    if (sessionStorage.getItem('obsession-sound') === '1') {
-      // Browser erlauben Audio erst nach Interaktion – beim ersten Klick wieder einschalten.
-      window.addEventListener('pointerdown', () => toggleSound(true), { once: true });
-    }
-  } catch {
-    /* egal */
-  }
+  restoreSound();
 }
 
 export function restoreScroll() {

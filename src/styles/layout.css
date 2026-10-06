@@ -732,3 +732,15 @@ html.is-entering .curtain i {
     gap: 8px;
   }
 }
+
+/* Ton ist an, wartet aber auf das erste Tippen (Browser-Sperre nach Seitenwechsel) */
+html.is-sound-pending #sound-btn {
+  animation: sound-pending 1.6s ease-in-out infinite;
+}
+
+@keyframes sound-pending {
+  50% {
+    border-color: var(--red-hot);
+    box-shadow: 0 0 0 4px rgba(255, 43, 71, 0.18);
+  }
+}
